@@ -11,7 +11,9 @@ A Neovim colorscheme inspired by cherry blossoms at night, designed with eye com
 - 👁️ **Eye-friendly design**: Scientifically designed contrast ratios to minimize eye strain
 - 🔍 **High readability**: WCAG AAA compliant color combinations
 - 🌙 **Dark theme optimized**: Perfect for low-light environments
-- 🎯 **Semantic highlighting**: Support for Treesitter and LSP
+- 🎯 **Full Treesitter support**: Complete highlighting for Neovim 0.9+ Treesitter groups
+- 🌍 **Language-specific optimizations**: Tailored highlights for popular languages (Lua, TypeScript, Python, Rust, Go, C++, Java, and more)
+- 🔧 **LSP semantic tokens**: Enhanced highlighting with LSP semantic tokens support
 
 ## Installation
 
