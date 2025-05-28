@@ -97,12 +97,6 @@ M.yozakura = {
 }
 
 M.dark = {
-  -- Base colors (桜色を基調)
-  sakura = "#ffb7c5",      -- メインの桜色
-  sakura_light = "#ffd0dc", -- 明るい桜色
-  sakura_dark = "#e899a5",  -- 暗い桜色
-  sakura_muted = "#d4a5b3", -- 落ち着いた桜色
-  
   -- Background colors
   bg0 = "#1e1e2e",         -- 最も暗い背景
   bg1 = "#2a2a3e",         -- 暗い背景
@@ -114,6 +108,12 @@ M.dark = {
   fg1 = "#e8d5d7",         -- 明るい前景
   fg2 = "#cbb6b8",         -- 中間の前景
   fg3 = "#a08a8c",         -- 暗い前景
+  
+  -- Base colors (桜色を基調)
+  sakura = "#ffb7c5",      -- メインの桜色
+  sakura_light = "#ffd0dc", -- 明るい桜色
+  sakura_dark = "#e899a5",  -- 暗い桜色
+  sakura_muted = "#d4a5b3", -- 落ち着いた桜色
   
   -- Accent colors
   red = "#ff7b9d",         -- エラー、削除
@@ -129,12 +129,6 @@ M.dark = {
 }
 
 M.light = {
-  -- Base colors (桜色を基調)
-  sakura = "#e67b97",      -- メインの桜色
-  sakura_light = "#ffb7c5", -- 明るい桜色  
-  sakura_dark = "#c55a74",  -- 暗い桜色
-  sakura_muted = "#b08592", -- 落ち着いた桜色
-  
   -- Background colors
   bg0 = "#fff5f5",         -- 最も明るい背景
   bg1 = "#ffe8e8",         -- 明るい背景
@@ -146,6 +140,12 @@ M.light = {
   fg1 = "#4a3842",         -- 暗い前景
   fg2 = "#685860",         -- 中間の前景
   fg3 = "#8a7a82",         -- 明るい前景
+  
+  -- Base colors (桜色を基調)
+  sakura = "#e67b97",      -- メインの桜色
+  sakura_light = "#ffb7c5", -- 明るい桜色  
+  sakura_dark = "#c55a74",  -- 暗い桜色
+  sakura_muted = "#b08592", -- 落ち着いた桜色
   
   -- Accent colors  
   red = "#d7005f",         -- エラー、削除
