@@ -1,14 +1,17 @@
-# 🌸 sakura.nvim
+# 🌸 Yozakura.nvim
 
-A beautiful sakura (cherry blossom) themed colorscheme for Neovim, inspired by the minimalist design philosophy of iceberg.vim.
+A Neovim colorscheme inspired by cherry blossoms at night, designed with eye comfort and readability in mind.
 
 ## Features
 
-- **Sakura-themed palette**: Built around soft pink and cherry blossom colors
-- **Minimal and focused**: Single color-based theme with carefully chosen accent colors
-- **Dark and light variants**: Supports both dark and light backgrounds
-- **TreeSitter support**: Full support for TreeSitter highlighting
-- **Terminal colors**: Integrated terminal color configuration
+- 🎨 **Three carefully crafted palettes**:
+  - `soft_contrast`: Gentle contrast (7:1-10:1) for extended coding sessions
+  - `warm_gray`: Warm gray base that reduces blue light exposure
+  - `muted_rose`: Muted rose tones with perfect balance of visibility and comfort
+- 👁️ **Eye-friendly design**: Scientifically designed contrast ratios to minimize eye strain
+- 🔍 **High readability**: WCAG AAA compliant color combinations
+- 🌙 **Dark theme optimized**: Perfect for low-light environments
+- 🎯 **Semantic highlighting**: Support for Treesitter and LSP
 
 ## Installation
 
@@ -16,21 +19,14 @@ A beautiful sakura (cherry blossom) themed colorscheme for Neovim, inspired by t
 
 ```lua
 {
-  "sakura.nvim",
+  "shabaraba/yozakura.nvim",
   lazy = false,
   priority = 1000,
   config = function()
-    require("sakura").setup({
-      transparent = false,
-      italic_comments = true,
-      dim_inactive = false,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = false },
-        functions = { italic = false },
-        variables = { italic = false },
-      },
+    require("yozakura").setup({
+      -- Your configuration here
     })
+    vim.cmd.colorscheme("yozakura")
   end,
 }
 ```
@@ -39,36 +35,24 @@ A beautiful sakura (cherry blossom) themed colorscheme for Neovim, inspired by t
 
 ```lua
 use {
-  'sakura.nvim',
+  "shabaraba/yozakura.nvim",
   config = function()
-    require('sakura').setup()
+    require("yozakura").setup({
+      -- Your configuration here
+    })
+    vim.cmd.colorscheme("yozakura")
   end
 }
 ```
 
-## Usage
-
-After installation, you can apply the colorscheme:
-
-```vim
-colorscheme sakura
-```
-
-Or in Lua:
-
-```lua
-vim.cmd("colorscheme sakura")
-```
-
 ## Configuration
 
-You can configure sakura.nvim by calling the setup function:
-
 ```lua
-require("sakura").setup({
-  transparent = false,         -- Enable transparent background
-  italic_comments = true,      -- Make comments italic
-  dim_inactive = false,        -- Dim inactive windows
+require("yozakura").setup({
+  transparent = false,
+  italic_comments = true,
+  dim_inactive = false,
+  palette = nil, -- nil | "soft_contrast" | "warm_gray" | "muted_rose"
   styles = {
     comments = { italic = true },
     keywords = { italic = false },
@@ -78,15 +62,41 @@ require("sakura").setup({
 })
 ```
 
-## Color Palette
+## Palette Options
 
-The colorscheme is built around these sakura-inspired colors:
+### Default
+The default palette uses traditional cherry blossom colors.
 
-- **Sakura Pink**: `#ffb7c5` - The main theme color
-- **Light Sakura**: `#ffd0dc` - Lighter variant for highlights
-- **Dark Sakura**: `#e899a5` - Darker variant for keywords
-- **Muted Sakura**: `#d4a5b3` - Subtle variant for UI elements
+### Soft Contrast
+```lua
+palette = "soft_contrast"
+```
+Moderate contrast ratios (7:1-10:1) optimized for long coding sessions.
+
+### Warm Gray
+```lua
+palette = "warm_gray"
+```
+Warm gray base colors that reduce blue light exposure for minimal eye strain.
+
+### Muted Rose
+```lua
+palette = "muted_rose"
+```
+Subtle rose tones with excellent color distinction and focus enhancement.
+
+## Color Design Principles
+
+1. **Appropriate Contrast**: 7:1-10:1 contrast ratios to prevent eye fatigue
+2. **Warm Color Base**: Reduced blue light for comfortable extended use
+3. **Adjusted Saturation**: Non-glaring colors that maintain distinctiveness
+4. **Gradual Brightness**: Natural depth perception from background to foreground
+5. **Consistent Hue**: Unified pink-to-rose color scheme to reduce cognitive load
 
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Credits
+
+Inspired by the beauty of cherry blossoms (桜) at night.
