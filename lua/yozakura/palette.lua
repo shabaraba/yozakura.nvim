@@ -96,70 +96,6 @@ M.yozakura = {
   }
 }
 
-M.dark = {
-  -- Background colors
-  bg0 = "#1e1e2e",         -- 最も暗い背景
-  bg1 = "#2a2a3e",         -- 暗い背景
-  bg2 = "#35354a",         -- 中間の背景
-  bg3 = "#414155",         -- 明るめの背景
-  
-  -- Foreground colors  
-  fg0 = "#f5e6e8",         -- 最も明るい前景
-  fg1 = "#e8d5d7",         -- 明るい前景
-  fg2 = "#cbb6b8",         -- 中間の前景
-  fg3 = "#a08a8c",         -- 暗い前景
-  
-  -- Base colors (桜色を基調)
-  sakura = "#ffb7c5",      -- メインの桜色
-  sakura_light = "#ffd0dc", -- 明るい桜色
-  sakura_dark = "#e899a5",  -- 暗い桜色
-  sakura_muted = "#d4a5b3", -- 落ち着いた桜色
-  
-  -- Accent colors
-  red = "#ff7b9d",         -- エラー、削除
-  green = "#98d8c8",       -- 成功、追加
-  yellow = "#f6c177",      -- 警告
-  blue = "#b5a7e6",        -- 情報、リンク
-  purple = "#dbb8e9",      -- 特殊
-  cyan = "#a8dadc",        -- 文字列
-  orange = "#ffab91",      -- 定数
-  
-  -- Special
-  none = "NONE",
-}
-
-M.light = {
-  -- Background colors
-  bg0 = "#fff5f5",         -- 最も明るい背景
-  bg1 = "#ffe8e8",         -- 明るい背景
-  bg2 = "#ffd6d6",         -- 中間の背景
-  bg3 = "#ffc4c4",         -- 暗めの背景
-  
-  -- Foreground colors
-  fg0 = "#2e2028",         -- 最も暗い前景
-  fg1 = "#4a3842",         -- 暗い前景
-  fg2 = "#685860",         -- 中間の前景
-  fg3 = "#8a7a82",         -- 明るい前景
-  
-  -- Base colors (桜色を基調)
-  sakura = "#e67b97",      -- メインの桜色
-  sakura_light = "#ffb7c5", -- 明るい桜色  
-  sakura_dark = "#c55a74",  -- 暗い桜色
-  sakura_muted = "#b08592", -- 落ち着いた桜色
-  
-  -- Accent colors  
-  red = "#d7005f",         -- エラー、削除
-  green = "#00796b",       -- 成功、追加
-  yellow = "#ef6c00",      -- 警告
-  blue = "#5e35b1",        -- 情報、リンク
-  purple = "#8e24aa",      -- 特殊
-  cyan = "#0097a7",        -- 文字列
-  orange = "#e65100",      -- 定数
-  
-  -- Special
-  none = "NONE",
-}
-
 function M.setup(opts)
   local config = require("yozakura.config").get()
   
@@ -168,8 +104,8 @@ function M.setup(opts)
     return M.yozakura[config.palette]
   end
   
-  -- デフォルトのsakuraパレット
-  return vim.o.background == "light" and M.light or M.dark
+  -- デフォルトはsoft_contrastパレット
+  return M.yozakura.soft_contrast
 end
 
 return M

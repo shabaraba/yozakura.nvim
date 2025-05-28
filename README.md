@@ -69,7 +69,6 @@ require("yozakura").setup({
 Yozakura provides commands to switch palettes on the fly:
 
 ```vim
-:YozakuraDefault        " Switch to default palette
 :YozakuraSoftContrast   " Switch to soft contrast palette
 :YozakuraWarmGray       " Switch to warm gray palette
 :YozakuraMutedRose      " Switch to muted rose palette
@@ -79,7 +78,6 @@ Yozakura provides commands to switch palettes on the fly:
 :YozakuraPalette soft_contrast
 :YozakuraPalette warm_gray
 :YozakuraPalette muted_rose
-:YozakuraPalette default
 ```
 
 You can also switch palettes programmatically:
@@ -87,15 +85,17 @@ You can also switch palettes programmatically:
 ```lua
 -- Switch to a specific palette
 require('yozakura').set_palette('soft_contrast')
+require('yozakura').set_palette('warm_gray')
+require('yozakura').set_palette('muted_rose')
 
--- Switch back to default
+-- Switch back to default (soft_contrast)
 require('yozakura').set_palette(nil)
 ```
 
 ## Palette Options
 
-### Default
-The default palette uses traditional cherry blossom colors.
+### Default (Soft Contrast)
+When no palette is specified, the soft contrast palette is used by default.
 
 ### Soft Contrast
 ```lua
