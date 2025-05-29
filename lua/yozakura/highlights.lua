@@ -9,28 +9,28 @@ function M.setup(palette)
   local theme_mappings = require("yozakura.theme_mappings")
   
   -- Editor highlights
-  hl.Normal = { fg = palette.fg0, bg = palette.bg0 }
-  hl.NormalFloat = { fg = palette.fg0, bg = palette.bg1 }
-  hl.FloatBorder = { fg = palette.sakura_muted, bg = palette.bg1 }
-  hl.ColorColumn = { bg = palette.bg1 }
+  hl.Normal = { fg = palette.fg0, bg = config.transparent and palette.none or palette.bg0 }
+  hl.NormalFloat = { fg = palette.fg0, bg = config.transparent and palette.none or palette.bg1 }
+  hl.FloatBorder = { fg = palette.sakura_muted, bg = config.transparent and palette.none or palette.bg1 }
+  hl.ColorColumn = { bg = config.transparent and palette.none or palette.bg1 }
   hl.Cursor = { fg = palette.bg0, bg = palette.sakura }
-  hl.CursorLine = { bg = palette.bg1 }
-  hl.CursorLineNr = { fg = palette.sakura, bg = palette.bg1 }
+  hl.CursorLine = { bg = config.transparent and palette.none or palette.bg1 }
+  hl.CursorLineNr = { fg = palette.sakura, bg = config.transparent and palette.none or palette.bg1 }
   hl.LineNr = { fg = palette.fg3 }
-  hl.SignColumn = { fg = palette.fg3, bg = palette.bg0 }
+  hl.SignColumn = { fg = palette.fg3, bg = config.transparent and palette.none or palette.bg0 }
   hl.VertSplit = { fg = palette.bg2 }
   hl.EndOfBuffer = { fg = palette.bg2 }
-  hl.Folded = { fg = palette.fg2, bg = palette.bg1 }
-  hl.FoldColumn = { fg = palette.fg3, bg = palette.bg0 }
+  hl.Folded = { fg = palette.fg2, bg = config.transparent and palette.none or palette.bg1 }
+  hl.FoldColumn = { fg = palette.fg3, bg = config.transparent and palette.none or palette.bg0 }
   
   -- Statusline
-  hl.StatusLine = { fg = palette.fg1, bg = palette.bg2 }
-  hl.StatusLineNC = { fg = palette.fg3, bg = palette.bg1 }
+  hl.StatusLine = { fg = palette.fg1, bg = config.transparent and palette.none or palette.bg2 }
+  hl.StatusLineNC = { fg = palette.fg3, bg = config.transparent and palette.none or palette.bg1 }
   
   -- Pmenu
-  hl.Pmenu = { fg = palette.fg1, bg = palette.bg1 }
+  hl.Pmenu = { fg = palette.fg1, bg = config.transparent and palette.none or palette.bg1 }
   hl.PmenuSel = { fg = palette.bg0, bg = palette.sakura }
-  hl.PmenuSbar = { bg = palette.bg2 }
+  hl.PmenuSbar = { bg = config.transparent and palette.none or palette.bg2 }
   hl.PmenuThumb = { bg = palette.sakura_muted }
   
   -- Search
@@ -39,13 +39,13 @@ function M.setup(palette)
   hl.CurSearch = { fg = palette.bg0, bg = palette.sakura }
   
   -- Visual
-  hl.Visual = { bg = palette.bg3 }
-  hl.VisualNOS = { bg = palette.bg3 }
+  hl.Visual = { bg = config.transparent and palette.bg2 or palette.bg3 }
+  hl.VisualNOS = { bg = config.transparent and palette.bg2 or palette.bg3 }
   
   -- Diff
-  hl.DiffAdd = { fg = palette.green, bg = palette.bg1 }
-  hl.DiffChange = { fg = palette.yellow, bg = palette.bg1 }
-  hl.DiffDelete = { fg = palette.red, bg = palette.bg1 }
+  hl.DiffAdd = { fg = palette.green, bg = config.transparent and palette.none or palette.bg1 }
+  hl.DiffChange = { fg = palette.yellow, bg = config.transparent and palette.none or palette.bg1 }
+  hl.DiffDelete = { fg = palette.red, bg = config.transparent and palette.none or palette.bg1 }
   hl.DiffText = { fg = palette.bg0, bg = palette.yellow }
   
   -- Syntax

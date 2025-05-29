@@ -58,9 +58,9 @@ use {
 
 ```lua
 require("yozakura").setup({
-  transparent = false,
-  italic_comments = true,
-  dim_inactive = false,
+  transparent = false,       -- Enable transparent background
+  italic_comments = true,    -- Use italic for comments
+  dim_inactive = false,      -- Dim inactive windows (not implemented yet)
   palette = "soft_contrast", -- "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
   styles = {
     comments = { italic = true },
@@ -130,6 +130,15 @@ Subtle rose tones with excellent color distinction and focus enhancement.
 palette = "night_blue"
 ```
 Night-themed palette with blue accents, perfect for late-night coding sessions.
+
+### Transparent Background
+```lua
+require("yozakura").setup({
+  transparent = true,
+  palette = "night_blue"
+})
+```
+Enable transparent background to blend with your terminal background.
 
 ## Color Design Principles
 
