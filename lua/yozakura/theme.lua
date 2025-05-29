@@ -9,8 +9,9 @@ function M.load()
   vim.o.termguicolors = true
   vim.g.colors_name = "yozakura"
   
-  local palette = require("yozakura.palette").setup()
-  local highlights = require("yozakura.highlights").setup(palette)
+  local config = require("yozakura.config").get()
+  local palette = require("yozakura.palette").setup({ palette = config.palette })
+  local highlights = require("yozakura.highlights").setup(palette, config)
   
   for group, settings in pairs(highlights) do
     vim.api.nvim_set_hl(0, group, settings)

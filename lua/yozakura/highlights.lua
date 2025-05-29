@@ -1,10 +1,10 @@
 local M = {}
 
-function M.setup(palette)
+function M.setup(palette, config)
   local hl = {}
   
-  -- Get palette name from config
-  local config = require("yozakura.config").get()
+  -- Use passed config or get from config module
+  config = config or require("yozakura.config").get()
   local palette_name = config.palette or "soft_contrast"
   local theme_mappings = require("yozakura.theme_mappings")
   
