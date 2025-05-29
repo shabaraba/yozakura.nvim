@@ -2,9 +2,7 @@ local M = {}
 local config = require("yozakura.config")
 
 function M.setup(opts)
-  print("🌸 Yozakura setup called with palette:", opts and opts.palette or "none")
   config.setup(opts)
-  print("🌸 Config after setup - palette:", config.get().palette)
   -- Auto-apply colorscheme when setup is called
   vim.cmd("colorscheme yozakura")
 end

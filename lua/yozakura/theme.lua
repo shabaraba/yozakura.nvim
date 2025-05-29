@@ -10,9 +10,7 @@ function M.load()
   vim.g.colors_name = "yozakura"
   
   local config = require("yozakura.config").get()
-  print("🌸 Theme loading with palette:", config.palette)
   local palette = require("yozakura.palette").setup({ palette = config.palette })
-  print("🌸 Palette loaded - bg0:", palette.bg0)
   local highlights = require("yozakura.highlights").setup(palette, config)
   
   for group, settings in pairs(highlights) do
