@@ -174,6 +174,10 @@ function M.setup(palette)
   hl["@function.method"] = { fg = theme_mappings.get_mapping(palette_name, "@method") or palette.sakura }
   hl["@function.method.call"] = { fg = theme_mappings.get_mapping(palette_name, "@method") or palette.sakura }
   
+  -- Additional method mappings for better property/method distinction
+  hl["@lsp.type.method"] = { fg = theme_mappings.get_mapping(palette_name, "@method") or palette.sakura }
+  hl["@lsp.type.property"] = { fg = theme_mappings.get_mapping(palette_name, "@property") or palette.fg0 }
+  
   -- Methods (already handled above)
   hl["@method.call"] = { fg = theme_mappings.get_mapping(palette_name, "@method") or palette.sakura }
   
@@ -233,22 +237,13 @@ function M.setup(palette)
   hl["@attribute"] = { fg = palette.purple }
   hl["@attribute.builtin"] = { fg = palette.purple }
   
-  -- Fields - different mappings per palette
-  if palette_name == "soft_contrast" then
-    hl["@field"] = { fg = palette.sakura } -- Different for soft_contrast
-    hl["@property"] = { fg = palette.sakura } -- #cba6c3
-  elseif palette_name == "warm_gray" then
-    hl["@field"] = { fg = palette.sakura } -- Different for warm_gray
-    hl["@property"] = { fg = palette.sakura } -- #d5a0b5
-  elseif palette_name == "muted_rose" then
-    hl["@field"] = { fg = palette.sakura } -- Different for muted_rose
-    hl["@property"] = { fg = palette.sakura } -- #c79fad
-  elseif palette_name == "night_blue" then
-    hl["@field"] = { fg = palette.sakura } -- Different for night_blue
-    hl["@property"] = { fg = palette.sakura } -- #d0a5c8
-  else
-    hl["@field"] = { fg = palette.fg0 }
-    hl["@property"] = { fg = palette.fg0 }
+  -- Fields and Properties - ensure proper color distinction
+  apply_mapping("@field")
+  apply_mapping("@property")
+  
+  -- For themes without specific field mapping, use property color
+  if not theme_mappings.get_mapping(palette_name, "@field") then
+    hl["@field"] = { fg = theme_mappings.get_mapping(palette_name, "@property") or palette.fg0 }
   end
   
   -- Namespaces

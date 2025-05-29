@@ -3,87 +3,87 @@ local M = {}
 -- Theme-specific Tree-sitter mappings based on HTML specification
 M.mappings = {
   soft_contrast = {
-    -- Variables (#a888a1, #9a6692, #cba6c3)
+    -- Variables (from HTML mapping category)
     ["@variable"] = "#a888a1",
     ["@variable.builtin"] = "#9a6692",
-    ["@property"] = "#cba6c3",
+    ["@property"] = "#cba6c3",  -- Properties are function-colored to distinguish from variables
     
-    -- Functions (#cba6c3, #c386b8, #b8a5d9)
-    ["@function"] = "#cba6c3",
+    -- Functions & Methods (different colors for distinction)
+    ["@function"] = "#cba6c3",     -- function name
     ["@function.builtin"] = "#c386b8",
     ["@function.macro"] = "#b8a5d9",
-    ["@method"] = "#cba6c3",
+    ["@method"] = "#cba6c3",       -- method calls should match functions
     
     -- Literals
     ["@string"] = "#d9b8cf",
-    ["@number"] = "#d9b8cf",
-    ["@boolean"] = "#d9b8cf",
+    ["@number"] = "#d9b8cf",  -- same as string
+    ["@boolean"] = "#c386b8", -- keyword-like (from code preview)
     
-    -- Types (#b076a5, #9a6692, #cba6c3)
-    ["@type"] = "#b076a5",
-    ["@type.builtin"] = "#9a6692",
+    -- Types (from HTML mapping category)
+    ["@type"] = "#b076a5",      -- interface type in code
+    ["@type.builtin"] = "#c386b8", -- built-in types like number, boolean
     ["@constructor"] = "#cba6c3",
     
-    -- Keywords
-    ["@keyword"] = "#c386b8",
+    -- Keywords (from code preview)
+    ["@keyword"] = "#c386b8",        -- const, return, interface
     ["@keyword.import"] = "#9a6692",
     ["@keyword.operator"] = "#c386b8",
   },
   
   warm_gray = {
-    -- Variables (#b08a95, #9f6f85, #d5a0b5)
+    -- Variables (from HTML mapping category)
     ["@variable"] = "#b08a95",
     ["@variable.builtin"] = "#9f6f85",
-    ["@property"] = "#d5a0b5",
+    ["@property"] = "#d5a0b5",  -- Properties use function color
     
-    -- Functions (#d5a0b5, #cc8fa5, #dba5b5)
-    ["@function"] = "#d5a0b5",
+    -- Functions & Methods
+    ["@function"] = "#d5a0b5",     -- function names
     ["@function.builtin"] = "#cc8fa5",
     ["@function.macro"] = "#dba5b5",
-    ["@method"] = "#d5a0b5",
+    ["@method"] = "#d5a0b5",       -- methods (log in code preview)
     
     -- Literals
     ["@string"] = "#e0b5c5",
-    ["@number"] = "#e8c0d0",
-    ["@boolean"] = "#d5a0b5",
+    ["@number"] = "#e8c0d0",  -- different from string for distinction
+    ["@boolean"] = "#d5a0b5", -- from HTML boolean mapping
     
-    -- Types (#b57f95, #9f6f85, #cc8fa5)
+    -- Types (from HTML mapping category)
     ["@type"] = "#b57f95",
-    ["@type.builtin"] = "#9f6f85",
+    ["@type.builtin"] = "#cc8fa5",  -- number type in code preview
     ["@constructor"] = "#cc8fa5",
     
-    -- Keywords
-    ["@keyword"] = "#cc8fa5",
+    -- Keywords (from code preview)
+    ["@keyword"] = "#cc8fa5",     -- type, function keywords
     ["@keyword.import"] = "#dba5b5",
     ["@keyword.operator"] = "#cc8fa5",
   },
   
   muted_rose = {
-    -- Variables (#a08590, #906a7a, #c79fad)
-    ["@variable"] = "#a08590",
+    -- Variables (from HTML mapping category)
+    ["@variable"] = "#a08590",    -- saturation property in code
     ["@variable.builtin"] = "#906a7a",
-    ["@property"] = "#c79fad",
+    ["@property"] = "#a08590",    -- properties use variable color for subtle distinction
     
-    -- Functions (#c79fad, #b88a9a, #c5a5b8)
-    ["@function"] = "#c79fad",
+    -- Functions & Methods  
+    ["@function"] = "#c79fad",    -- bloom function name
     ["@function.builtin"] = "#b88a9a",
     ["@function.macro"] = "#c5a5b8",
-    ["@method"] = "#c79fad",
+    ["@method"] = "#c79fad",      -- methods use function color
     
     -- Literals
-    ["@string"] = "#d6b5c0",
-    ["@number"] = "#e6c5d0",
-    ["@boolean"] = "#c79fad",
+    ["@string"] = "#d6b5c0",     -- 'excellent' string
+    ["@number"] = "#d6b5c0",     -- 0.4, 0.1 numbers - same as string
+    ["@boolean"] = "#c79fad",    -- from HTML boolean mapping
     
-    -- Types (#a67a8a, #906a7a, #b88a9a)
-    ["@type"] = "#a67a8a",
-    ["@type.builtin"] = "#906a7a",
+    -- Types (from HTML mapping category)
+    ["@type"] = "#a67a8a",       -- darker type colors
+    ["@type.builtin"] = "#b88a9a", -- number, string, void types
     ["@constructor"] = "#b88a9a",
     
-    -- Keywords
-    ["@keyword"] = "#b88a9a",
+    -- Keywords (from code preview)
+    ["@keyword"] = "#b88a9a",     -- class, private, public, this
     ["@keyword.import"] = "#c5a5b8",
-    ["@keyword.operator"] = "#a67a8a",
+    ["@keyword.operator"] = "#a67a8a", -- different from other themes
     
     -- Special (muted_rose specific)
     ["@string.regexp"] = "#d5889c",
@@ -92,36 +92,36 @@ M.mappings = {
   },
   
   night_blue = {
-    -- Variables (#9d88a5, #bb9af7, #d0a5c8, #7aa2f7)
-    ["@variable"] = "#9d88a5",
-    ["@variable.builtin"] = "#bb9af7",
-    ["@property"] = "#d0a5c8",
-    ["@variable.member"] = "#7aa2f7",
+    -- Variables (from HTML mapping category and code preview)
+    ["@variable"] = "#9d88a5",    -- moonPhase, starCount, petals, tree, glowing
+    ["@variable.builtin"] = "#bb9af7", -- purple accent
+    ["@property"] = "#d0a5c8",    -- moonPhase, petals, length properties
+    ["@variable.member"] = "#7aa2f7", -- blue accent for object members
     
-    -- Functions (#d0a5c8, #7aa2f7, #bb9af7, #e0c0d5)
-    ["@function"] = "#d0a5c8",
-    ["@function.builtin"] = "#7aa2f7",
-    ["@function.macro"] = "#bb9af7",
-    ["@method"] = "#e0c0d5",
+    -- Functions & Methods (blue accents for built-ins)
+    ["@function"] = "#d0a5c8",    -- NightBloom function name
+    ["@function.builtin"] = "#7aa2f7", -- useState, useEffect (blue)
+    ["@function.macro"] = "#bb9af7",   -- purple accent
+    ["@method"] = "#d0a5c8",      -- methods use function color
     
     -- Literals
-    ["@string"] = "#e0c0d5",
-    ["@number"] = "#f7d0e8",
-    ["@boolean"] = "#c090b8",
-    ["@string.special"] = "#9ece6a",
+    ["@string"] = "#e0c0d5",     -- 'new', 'full', template strings
+    ["@number"] = "#f7d0e8",     -- different from string
+    ["@boolean"] = "#c090b8",    -- false, true
+    ["@string.special"] = "#9ece6a", -- special string handling (green)
     
-    -- Types (#d0a5c8, #c090b8, #bb9af7, #7aa2f7)
-    ["@type"] = "#d0a5c8",
-    ["@type.builtin"] = "#c090b8",
-    ["@interface"] = "#bb9af7",
-    ["@namespace"] = "#7aa2f7",
+    -- Types (from HTML mapping category)
+    ["@type"] = "#d0a5c8",       -- NightYozakura, Petal types
+    ["@type.builtin"] = "#c090b8", -- number built-in type
+    ["@interface"] = "#bb9af7",   -- interface keyword gets purple
+    ["@namespace"] = "#7aa2f7",   -- namespaces get blue
     ["@constructor"] = "#d0a5c8",
     
-    -- Keywords
-    ["@keyword"] = "#c090b8",
-    ["@keyword.import"] = "#bb9af7",
-    ["@keyword.return"] = "#7aa2f7",
-    ["@keyword.operator"] = "#565b7e",
+    -- Keywords (from code preview)
+    ["@keyword"] = "#c090b8",     -- const, if, return
+    ["@keyword.import"] = "#bb9af7", -- import gets purple
+    ["@keyword.return"] = "#7aa2f7", -- return gets blue accent
+    ["@keyword.operator"] = "#565b7e", -- blue-gray operators
     
     -- Special (night_blue specific)
     ["@string.regexp"] = "#f7768e",
