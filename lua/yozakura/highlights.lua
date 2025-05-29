@@ -59,7 +59,7 @@ function M.setup(palette)
   hl.Conditional = { fg = palette.sakura_dark }
   hl.Repeat = { fg = palette.sakura_dark }
   hl.Label = { fg = palette.sakura_dark }
-  hl.Operator = { fg = palette.fg1 }
+  hl.Operator = { fg = theme_mappings.get_mapping(palette_name, "@operator") or palette.fg1 }
   hl.Keyword = { fg = palette.sakura_dark }
   hl.Exception = { fg = palette.red }
   
@@ -77,7 +77,7 @@ function M.setup(palette)
   hl.Special = { fg = palette.sakura_light }
   hl.SpecialChar = { fg = palette.sakura_light }
   hl.Tag = { fg = palette.sakura_light }
-  hl.Delimiter = { fg = palette.fg1 }
+  hl.Delimiter = { fg = theme_mappings.get_mapping(palette_name, "@punctuation.delimiter") or palette.fg1 }
   hl.SpecialComment = { fg = palette.fg2, italic = true }
   hl.Debug = { fg = palette.red }
   
@@ -216,7 +216,10 @@ function M.setup(palette)
   hl["@label"] = { fg = palette.sakura_dark }
   
   -- Operators
-  hl["@operator"] = { fg = palette.fg1 }
+  apply_mapping("@operator")
+  if not hl["@operator"] then
+    hl["@operator"] = { fg = palette.fg1 }
+  end
   
   -- Exceptions
   hl["@exception"] = { fg = palette.red }
@@ -263,9 +266,20 @@ function M.setup(palette)
   hl["@include"] = { fg = palette.purple }
   
   -- Punctuation
-  hl["@punctuation.delimiter"] = { fg = palette.fg1 }
-  hl["@punctuation.bracket"] = { fg = palette.fg1 }
-  hl["@punctuation.special"] = { fg = palette.sakura_light }
+  apply_mapping("@punctuation.delimiter")
+  apply_mapping("@punctuation.bracket")
+  apply_mapping("@punctuation.special")
+  
+  -- If not set by theme_mappings, use default
+  if not hl["@punctuation.delimiter"] then
+    hl["@punctuation.delimiter"] = { fg = palette.fg1 }
+  end
+  if not hl["@punctuation.bracket"] then
+    hl["@punctuation.bracket"] = { fg = palette.fg1 }
+  end
+  if not hl["@punctuation.special"] then
+    hl["@punctuation.special"] = { fg = palette.sakura_light }
+  end
   
   -- Comments
   hl["@comment"] = { fg = palette.fg3, italic = true }
