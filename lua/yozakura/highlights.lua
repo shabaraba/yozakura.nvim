@@ -98,67 +98,213 @@ function M.setup(palette)
   hl.GitSignsDelete = { fg = palette.red }
   
   -- Treesitter (updated for Neovim 0.9+)
-  -- Variables
-  hl["@variable"] = { fg = palette.fg0 }
-  hl["@variable.builtin"] = { fg = palette.purple }
-  hl["@variable.parameter"] = { fg = palette.fg1 }
-  hl["@variable.member"] = { fg = palette.fg0 }
+  -- Get palette name from config
+  local config = require("yozakura.config").get()
+  local palette_name = config.palette or "soft_contrast"
+  
+  -- Variables - different mappings per palette
+  if palette_name == "soft_contrast" then
+    hl["@variable"] = { fg = palette.sakura_muted } -- #a888a1
+    hl["@variable.builtin"] = { fg = palette.purple }
+    hl["@variable.parameter"] = { fg = palette.fg1 }
+    hl["@variable.member"] = { fg = palette.fg0 }
+  elseif palette_name == "warm_gray" then
+    hl["@variable"] = { fg = palette.sakura_muted } -- #b08a95
+    hl["@variable.builtin"] = { fg = palette.purple }
+    hl["@variable.parameter"] = { fg = palette.fg1 }
+    hl["@variable.member"] = { fg = palette.fg0 }
+  elseif palette_name == "muted_rose" then
+    hl["@variable"] = { fg = palette.sakura_muted } -- #a08590
+    hl["@variable.builtin"] = { fg = palette.purple }
+    hl["@variable.parameter"] = { fg = palette.fg1 }
+    hl["@variable.member"] = { fg = palette.fg0 }
+  elseif palette_name == "night_blue" then
+    hl["@variable"] = { fg = palette.sakura_muted } -- #9d88a5
+    hl["@variable.builtin"] = { fg = palette.purple } -- #bb9af7
+    hl["@variable.parameter"] = { fg = palette.fg1 }
+    hl["@variable.member"] = { fg = palette.blue } -- #7aa2f7
+  end
   
   -- Constants
   hl["@constant"] = { fg = palette.orange }
   hl["@constant.builtin"] = { fg = palette.orange }
   hl["@constant.macro"] = { fg = palette.orange }
   
-  -- Strings
-  hl["@string"] = { fg = palette.cyan }
-  hl["@string.documentation"] = { fg = palette.cyan }
-  hl["@string.regex"] = { fg = palette.cyan }
-  hl["@string.escape"] = { fg = palette.sakura_light }
-  hl["@string.special"] = { fg = palette.sakura_light }
-  hl["@string.special.symbol"] = { fg = palette.orange }
-  hl["@string.special.url"] = { fg = palette.blue, underline = true }
+  -- Strings - different mappings per palette
+  if palette_name == "soft_contrast" then
+    hl["@string"] = { fg = palette.sakura_light } -- #d9b8cf
+    hl["@string.documentation"] = { fg = palette.sakura_light }
+    hl["@string.regex"] = { fg = palette.sakura_light }
+    hl["@string.escape"] = { fg = palette.sakura }
+    hl["@string.special"] = { fg = palette.sakura }
+    hl["@string.special.symbol"] = { fg = palette.orange }
+    hl["@string.special.url"] = { fg = palette.blue, underline = true }
+  elseif palette_name == "warm_gray" then
+    hl["@string"] = { fg = palette.sakura_light } -- #e0b5c5
+    hl["@string.documentation"] = { fg = palette.sakura_light }
+    hl["@string.regex"] = { fg = palette.sakura_light }
+    hl["@string.escape"] = { fg = palette.sakura }
+    hl["@string.special"] = { fg = palette.sakura }
+    hl["@string.special.symbol"] = { fg = palette.orange }
+    hl["@string.special.url"] = { fg = palette.blue, underline = true }
+  elseif palette_name == "muted_rose" then
+    hl["@string"] = { fg = palette.sakura_light } -- #d6b5c0
+    hl["@string.documentation"] = { fg = palette.sakura_light }
+    hl["@string.regex"] = { fg = palette.red } -- #d5889c (special for muted_rose)
+    hl["@string.escape"] = { fg = palette.sakura }
+    hl["@string.special"] = { fg = palette.sakura }
+    hl["@string.special.symbol"] = { fg = palette.orange }
+    hl["@string.special.url"] = { fg = palette.blue, underline = true }
+  elseif palette_name == "night_blue" then
+    hl["@string"] = { fg = palette.sakura_light } -- #e0c0d5
+    hl["@string.documentation"] = { fg = palette.sakura_light }
+    hl["@string.regex"] = { fg = palette.red } -- #f7768e
+    hl["@string.escape"] = { fg = palette.sakura }
+    hl["@string.special"] = { fg = palette.green } -- #9ece6a
+    hl["@string.special.symbol"] = { fg = palette.orange }
+    hl["@string.special.url"] = { fg = palette.blue, underline = true }
+  end
   
-  -- Characters
-  hl["@character"] = { fg = palette.cyan }
-  hl["@character.special"] = { fg = palette.sakura_light }
+  -- Characters - different mappings per palette
+  if palette_name == "soft_contrast" then
+    hl["@character"] = { fg = palette.sakura_light } -- Same as string
+    hl["@character.special"] = { fg = palette.sakura }
+  elseif palette_name == "warm_gray" then
+    hl["@character"] = { fg = palette.sakura_light } -- Same as string
+    hl["@character.special"] = { fg = palette.sakura }
+  elseif palette_name == "muted_rose" then
+    hl["@character"] = { fg = palette.sakura_light } -- Same as string
+    hl["@character.special"] = { fg = palette.sakura }
+  elseif palette_name == "night_blue" then
+    hl["@character"] = { fg = palette.sakura_light } -- Same as string
+    hl["@character.special"] = { fg = palette.sakura }
+  else
+    hl["@character"] = { fg = palette.cyan }
+    hl["@character.special"] = { fg = palette.sakura_light }
+  end
   
-  -- Numbers
-  hl["@number"] = { fg = palette.orange }
-  hl["@number.float"] = { fg = palette.orange }
+  -- Numbers - different mappings per palette
+  if palette_name == "warm_gray" then
+    hl["@number"] = { fg = palette.sakura_light } -- Use sakura_light for warm_gray
+    hl["@number.float"] = { fg = palette.sakura_light }
+  elseif palette_name == "muted_rose" then
+    hl["@number"] = { fg = palette.sakura_light } -- Use sakura_light for muted_rose
+    hl["@number.float"] = { fg = palette.sakura_light }
+  elseif palette_name == "night_blue" then
+    hl["@number"] = { fg = palette.sakura_light } -- Use sakura_light for night_blue
+    hl["@number.float"] = { fg = palette.sakura_light }
+  else
+    hl["@number"] = { fg = palette.orange }
+    hl["@number.float"] = { fg = palette.orange }
+  end
   
-  -- Booleans
-  hl["@boolean"] = { fg = palette.orange }
+  -- Booleans - different mappings per palette
+  if palette_name == "warm_gray" then
+    hl["@boolean"] = { fg = palette.sakura } -- #d5a0b5
+  elseif palette_name == "muted_rose" then
+    hl["@boolean"] = { fg = palette.sakura } -- #c79fad
+  elseif palette_name == "night_blue" then
+    hl["@boolean"] = { fg = palette.sakura_dark } -- #c090b8
+  else
+    hl["@boolean"] = { fg = palette.orange }
+  end
   
-  -- Functions
-  hl["@function"] = { fg = palette.sakura }
-  hl["@function.builtin"] = { fg = palette.sakura }
-  hl["@function.call"] = { fg = palette.sakura }
-  hl["@function.macro"] = { fg = palette.purple }
-  hl["@function.method"] = { fg = palette.sakura }
-  hl["@function.method.call"] = { fg = palette.sakura }
+  -- Functions - different mappings per palette
+  if palette_name == "soft_contrast" then
+    hl["@function"] = { fg = palette.sakura } -- #cba6c3
+    hl["@function.builtin"] = { fg = palette.sakura_dark } -- #c386b8
+    hl["@function.call"] = { fg = palette.sakura }
+    hl["@function.macro"] = { fg = palette.purple }
+    hl["@function.method"] = { fg = palette.sakura }
+    hl["@function.method.call"] = { fg = palette.sakura }
+  elseif palette_name == "warm_gray" then
+    hl["@function"] = { fg = palette.sakura } -- #d5a0b5
+    hl["@function.builtin"] = { fg = palette.sakura_dark } -- #cc8fa5
+    hl["@function.call"] = { fg = palette.sakura }
+    hl["@function.macro"] = { fg = palette.purple }
+    hl["@function.method"] = { fg = palette.sakura }
+    hl["@function.method.call"] = { fg = palette.sakura }
+  elseif palette_name == "muted_rose" then
+    hl["@function"] = { fg = palette.sakura } -- #c79fad
+    hl["@function.builtin"] = { fg = palette.sakura_dark } -- #b88a9a
+    hl["@function.call"] = { fg = palette.sakura }
+    hl["@function.macro"] = { fg = palette.purple }
+    hl["@function.method"] = { fg = palette.sakura }
+    hl["@function.method.call"] = { fg = palette.sakura }
+  elseif palette_name == "night_blue" then
+    hl["@function"] = { fg = palette.sakura } -- #d0a5c8
+    hl["@function.builtin"] = { fg = palette.blue } -- #7aa2f7
+    hl["@function.call"] = { fg = palette.sakura }
+    hl["@function.macro"] = { fg = palette.purple } -- #bb9af7
+    hl["@function.method"] = { fg = palette.sakura_light } -- #e0c0d5
+    hl["@function.method.call"] = { fg = palette.sakura_light }
+  end
   
   -- Methods
   hl["@method"] = { fg = palette.sakura }
   hl["@method.call"] = { fg = palette.sakura }
   
-  -- Constructors
-  hl["@constructor"] = { fg = palette.sakura }
+  -- Constructors - different mappings per palette
+  if palette_name == "warm_gray" then
+    hl["@constructor"] = { fg = palette.sakura_dark } -- #cc8fa5
+  elseif palette_name == "muted_rose" then
+    hl["@constructor"] = { fg = palette.sakura_dark } -- #b88a9a
+  elseif palette_name == "night_blue" then
+    hl["@constructor"] = { fg = palette.sakura } -- #d0a5c8
+  else
+    hl["@constructor"] = { fg = palette.sakura }
+  end
   
   -- Parameters
   hl["@parameter"] = { fg = palette.fg1 }
   hl["@parameter.reference"] = { fg = palette.fg1 }
   
-  -- Keywords
-  hl["@keyword"] = { fg = palette.sakura_dark }
-  hl["@keyword.coroutine"] = { fg = palette.sakura_dark }
-  hl["@keyword.function"] = { fg = palette.sakura_dark }
-  hl["@keyword.operator"] = { fg = palette.sakura_dark }
-  hl["@keyword.import"] = { fg = palette.purple }
-  hl["@keyword.storage"] = { fg = palette.sakura_dark }
-  hl["@keyword.repeat"] = { fg = palette.sakura_dark }
-  hl["@keyword.return"] = { fg = palette.sakura_dark }
-  hl["@keyword.debug"] = { fg = palette.red }
-  hl["@keyword.exception"] = { fg = palette.red }
+  -- Keywords - different mappings per palette
+  if palette_name == "soft_contrast" then
+    hl["@keyword"] = { fg = palette.sakura_dark } -- #c386b8
+    hl["@keyword.coroutine"] = { fg = palette.sakura_dark }
+    hl["@keyword.function"] = { fg = palette.sakura_dark }
+    hl["@keyword.operator"] = { fg = palette.sakura_dark }
+    hl["@keyword.import"] = { fg = palette.purple }
+    hl["@keyword.storage"] = { fg = palette.sakura_dark }
+    hl["@keyword.repeat"] = { fg = palette.sakura_dark }
+    hl["@keyword.return"] = { fg = palette.sakura_dark }
+    hl["@keyword.debug"] = { fg = palette.red }
+    hl["@keyword.exception"] = { fg = palette.red }
+  elseif palette_name == "warm_gray" then
+    hl["@keyword"] = { fg = palette.sakura_dark } -- #cc8fa5
+    hl["@keyword.coroutine"] = { fg = palette.sakura_dark }
+    hl["@keyword.function"] = { fg = palette.sakura_dark }
+    hl["@keyword.operator"] = { fg = palette.sakura_dark }
+    hl["@keyword.import"] = { fg = palette.purple }
+    hl["@keyword.storage"] = { fg = palette.sakura_dark }
+    hl["@keyword.repeat"] = { fg = palette.sakura_dark }
+    hl["@keyword.return"] = { fg = palette.sakura_dark }
+    hl["@keyword.debug"] = { fg = palette.red }
+    hl["@keyword.exception"] = { fg = palette.red }
+  elseif palette_name == "muted_rose" then
+    hl["@keyword"] = { fg = palette.sakura_dark } -- #b88a9a
+    hl["@keyword.coroutine"] = { fg = palette.sakura_dark }
+    hl["@keyword.function"] = { fg = palette.sakura_dark }
+    hl["@keyword.operator"] = { fg = palette.purple } -- Different for muted_rose
+    hl["@keyword.import"] = { fg = palette.purple }
+    hl["@keyword.storage"] = { fg = palette.sakura_dark }
+    hl["@keyword.repeat"] = { fg = palette.sakura_dark }
+    hl["@keyword.return"] = { fg = palette.sakura_dark }
+    hl["@keyword.debug"] = { fg = palette.red }
+    hl["@keyword.exception"] = { fg = palette.red }
+  elseif palette_name == "night_blue" then
+    hl["@keyword"] = { fg = palette.sakura_dark } -- #c090b8
+    hl["@keyword.coroutine"] = { fg = palette.sakura_dark }
+    hl["@keyword.function"] = { fg = palette.sakura_dark }
+    hl["@keyword.operator"] = { fg = palette.fg3 } -- #565b7e
+    hl["@keyword.import"] = { fg = palette.purple } -- #bb9af7
+    hl["@keyword.storage"] = { fg = palette.sakura_dark }
+    hl["@keyword.repeat"] = { fg = palette.sakura_dark }
+    hl["@keyword.return"] = { fg = palette.blue } -- #7aa2f7
+    hl["@keyword.debug"] = { fg = palette.red }
+    hl["@keyword.exception"] = { fg = palette.red }
+  end
   
   -- Conditionals
   hl["@conditional"] = { fg = palette.sakura_dark }
@@ -176,23 +322,65 @@ function M.setup(palette)
   -- Exceptions
   hl["@exception"] = { fg = palette.red }
   
-  -- Types
-  hl["@type"] = { fg = palette.blue }
-  hl["@type.builtin"] = { fg = palette.blue }
-  hl["@type.definition"] = { fg = palette.blue }
-  hl["@type.qualifier"] = { fg = palette.sakura_dark }
+  -- Types - different mappings per palette
+  if palette_name == "soft_contrast" then
+    hl["@type"] = { fg = palette.blue }
+    hl["@type.builtin"] = { fg = palette.blue }
+    hl["@type.definition"] = { fg = palette.blue }
+    hl["@type.qualifier"] = { fg = palette.sakura_dark }
+  elseif palette_name == "warm_gray" then
+    hl["@type"] = { fg = palette.purple } -- Different for warm_gray
+    hl["@type.builtin"] = { fg = palette.purple }
+    hl["@type.definition"] = { fg = palette.purple }
+    hl["@type.qualifier"] = { fg = palette.sakura_dark }
+  elseif palette_name == "muted_rose" then
+    hl["@type"] = { fg = palette.purple } -- Different for muted_rose
+    hl["@type.builtin"] = { fg = palette.purple }
+    hl["@type.definition"] = { fg = palette.purple }
+    hl["@type.qualifier"] = { fg = palette.sakura_dark }
+  elseif palette_name == "night_blue" then
+    hl["@type"] = { fg = palette.sakura } -- #d0a5c8
+    hl["@type.builtin"] = { fg = palette.sakura_dark } -- #c090b8
+    hl["@type.definition"] = { fg = palette.sakura }
+    hl["@type.qualifier"] = { fg = palette.sakura_dark }
+  end
+  
+  -- Interface (for Night Blue)
+  if palette_name == "night_blue" then
+    hl["@interface"] = { fg = palette.purple } -- #bb9af7
+    hl["@lsp.type.interface"] = { fg = palette.purple } -- #bb9af7
+  end
   
   -- Attributes
   hl["@attribute"] = { fg = palette.purple }
   hl["@attribute.builtin"] = { fg = palette.purple }
   
-  -- Fields
-  hl["@field"] = { fg = palette.fg0 }
-  hl["@property"] = { fg = palette.fg0 }
+  -- Fields - different mappings per palette
+  if palette_name == "soft_contrast" then
+    hl["@field"] = { fg = palette.sakura } -- Different for soft_contrast
+    hl["@property"] = { fg = palette.sakura } -- #cba6c3
+  elseif palette_name == "warm_gray" then
+    hl["@field"] = { fg = palette.sakura } -- Different for warm_gray
+    hl["@property"] = { fg = palette.sakura } -- #d5a0b5
+  elseif palette_name == "muted_rose" then
+    hl["@field"] = { fg = palette.sakura } -- Different for muted_rose
+    hl["@property"] = { fg = palette.sakura } -- #c79fad
+  elseif palette_name == "night_blue" then
+    hl["@field"] = { fg = palette.sakura } -- Different for night_blue
+    hl["@property"] = { fg = palette.sakura } -- #d0a5c8
+  else
+    hl["@field"] = { fg = palette.fg0 }
+    hl["@property"] = { fg = palette.fg0 }
+  end
   
-  -- Namespaces
-  hl["@namespace"] = { fg = palette.purple }
-  hl["@namespace.builtin"] = { fg = palette.purple }
+  -- Namespaces - different mappings per palette
+  if palette_name == "night_blue" then
+    hl["@namespace"] = { fg = palette.blue } -- #7aa2f7
+    hl["@namespace.builtin"] = { fg = palette.blue }
+  else
+    hl["@namespace"] = { fg = palette.purple }
+    hl["@namespace.builtin"] = { fg = palette.purple }
+  end
   
   -- Modules
   hl["@module"] = { fg = palette.purple }
@@ -206,13 +394,29 @@ function M.setup(palette)
   hl["@punctuation.bracket"] = { fg = palette.fg1 }
   hl["@punctuation.special"] = { fg = palette.sakura_light }
   
-  -- Comments
-  hl["@comment"] = { fg = palette.fg3, italic = true }
-  hl["@comment.documentation"] = { fg = palette.fg3, italic = true }
-  hl["@comment.error"] = { fg = palette.red, italic = true }
-  hl["@comment.warning"] = { fg = palette.yellow, italic = true }
-  hl["@comment.todo"] = { fg = palette.blue, italic = true, bold = true }
-  hl["@comment.note"] = { fg = palette.green, italic = true }
+  -- Comments - different mappings per palette
+  if palette_name == "night_blue" then
+    hl["@comment"] = { fg = palette.fg3, italic = true }
+    hl["@comment.documentation"] = { fg = palette.fg3, italic = true }
+    hl["@comment.error"] = { fg = palette.red, italic = true }
+    hl["@comment.warning"] = { fg = palette.yellow, italic = true }
+    hl["@comment.todo"] = { fg = palette.orange, italic = true, bold = true } -- #ff9e64
+    hl["@comment.note"] = { fg = palette.green, italic = true }
+  elseif palette_name == "muted_rose" then
+    hl["@comment"] = { fg = palette.fg3, italic = true }
+    hl["@comment.documentation"] = { fg = palette.fg3, italic = true }
+    hl["@comment.error"] = { fg = palette.red, italic = true }
+    hl["@comment.warning"] = { fg = palette.yellow, italic = true }
+    hl["@comment.todo"] = { fg = palette.orange, italic = true, bold = true } -- #e8a888
+    hl["@comment.note"] = { fg = palette.green, italic = true }
+  else
+    hl["@comment"] = { fg = palette.fg3, italic = true }
+    hl["@comment.documentation"] = { fg = palette.fg3, italic = true }
+    hl["@comment.error"] = { fg = palette.red, italic = true }
+    hl["@comment.warning"] = { fg = palette.yellow, italic = true }
+    hl["@comment.todo"] = { fg = palette.blue, italic = true, bold = true }
+    hl["@comment.note"] = { fg = palette.green, italic = true }
+  end
   
   -- Tags (HTML/XML)
   hl["@tag"] = { fg = palette.sakura_light }
@@ -241,7 +445,7 @@ function M.setup(palette)
   hl["@text.diff.add"] = { fg = palette.green }
   hl["@text.diff.delete"] = { fg = palette.red }
   
-  -- Markup
+  -- Markup - different mappings per palette
   hl["@markup"] = { fg = palette.fg0 }
   hl["@markup.strong"] = { bold = true }
   hl["@markup.emphasis"] = { italic = true }
@@ -251,19 +455,37 @@ function M.setup(palette)
   hl["@markup.quote"] = { fg = palette.fg2, italic = true }
   hl["@markup.math"] = { fg = palette.orange }
   hl["@markup.environment"] = { fg = palette.purple }
-  hl["@markup.link"] = { fg = palette.blue, underline = true }
-  hl["@markup.link.label"] = { fg = palette.sakura }
-  hl["@markup.link.url"] = { fg = palette.blue, underline = true }
+  
+  if palette_name == "night_blue" then
+    hl["@markup.link"] = { fg = palette.cyan, underline = true } -- #73daca
+    hl["@markup.link.label"] = { fg = palette.sakura }
+    hl["@markup.link.url"] = { fg = palette.cyan, underline = true }
+  elseif palette_name == "muted_rose" then
+    hl["@markup.link"] = { fg = palette.blue, underline = true } -- #a5c4d9
+    hl["@markup.link.label"] = { fg = palette.sakura }
+    hl["@markup.link.url"] = { fg = palette.blue, underline = true }
+  else
+    hl["@markup.link"] = { fg = palette.blue, underline = true }
+    hl["@markup.link.label"] = { fg = palette.sakura }
+    hl["@markup.link.url"] = { fg = palette.blue, underline = true }
+  end
+  
   hl["@markup.raw"] = { fg = palette.cyan }
   hl["@markup.raw.block"] = { fg = palette.cyan }
   hl["@markup.list"] = { fg = palette.sakura_dark }
   hl["@markup.list.checked"] = { fg = palette.green }
   hl["@markup.list.unchecked"] = { fg = palette.fg2 }
   
-  -- Diff
-  hl["@diff.plus"] = { fg = palette.green }
-  hl["@diff.minus"] = { fg = palette.red }
-  hl["@diff.delta"] = { fg = palette.yellow }
+  -- Diff - different mappings per palette
+  if palette_name == "night_blue" then
+    hl["@diff.plus"] = { fg = palette.green } -- #9ece6a
+    hl["@diff.minus"] = { fg = palette.red }
+    hl["@diff.delta"] = { fg = palette.yellow }
+  else
+    hl["@diff.plus"] = { fg = palette.green }
+    hl["@diff.minus"] = { fg = palette.red }
+    hl["@diff.delta"] = { fg = palette.yellow }
+  end
   
   -- Language specific highlights
   -- Lua
