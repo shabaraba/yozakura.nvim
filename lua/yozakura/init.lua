@@ -14,10 +14,10 @@ function M.set_palette(palette_name)
   if palette_name and palette_name ~= "" then
     config.options.palette = palette_name
   else
-    config.options.palette = nil
+    config.options.palette = "soft_contrast"
   end
   M.load()
-  print("🌸 Yozakura palette set to: " .. (palette_name or "soft_contrast (default)"))
+  print("🌸 Yozakura palette set to: " .. (config.options.palette or "soft_contrast"))
 end
 
 function M.yozakura(args)

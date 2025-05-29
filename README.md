@@ -33,7 +33,7 @@ A Neovim colorscheme inspired by cherry blossoms at night, designed with eye com
   priority = 1000,
   config = function()
     require("yozakura").setup({
-      -- Your configuration here
+      palette = "night_blue", -- Use night_blue palette
     })
     vim.cmd.colorscheme("yozakura")
   end,
@@ -61,7 +61,7 @@ require("yozakura").setup({
   transparent = false,
   italic_comments = true,
   dim_inactive = false,
-  palette = nil, -- nil | "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
+  palette = "soft_contrast", -- "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
   styles = {
     comments = { italic = true },
     keywords = { italic = false },

@@ -130,9 +130,12 @@ M.yozakura = {
 function M.setup(opts)
   local config = require("yozakura.config").get()
   
+  -- optsでpaletteが指定されている場合は優先
+  local palette_name = (opts and opts.palette) or config.palette or "soft_contrast"
+  
   -- Yozakuraパレットが指定されている場合
-  if config.palette and M.yozakura[config.palette] then
-    return M.yozakura[config.palette]
+  if M.yozakura[palette_name] then
+    return M.yozakura[palette_name]
   end
   
   -- デフォルトはsoft_contrastパレット
