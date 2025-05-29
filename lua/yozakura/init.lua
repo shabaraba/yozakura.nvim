@@ -3,8 +3,8 @@ local config = require("yozakura.config")
 
 function M.setup(opts)
   config.setup(opts)
-  -- Don't auto-apply colorscheme in setup, let user do it explicitly
-  -- This allows proper opts handling in Lazy.nvim
+  -- Auto-apply colorscheme when setup is called
+  vim.cmd("colorscheme yozakura")
 end
 
 function M.load()
