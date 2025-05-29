@@ -92,32 +92,32 @@ M.mappings = {
   },
   
   night_blue = {
-    -- Variables (from HTML mapping category and code preview)
-    ["@variable"] = "#9d88a5",    -- moonPhase, starCount, petals, tree, glowing
+    -- Variables (from screenshot analysis)
+    ["@variable"] = "#9d88a5",    -- tree, glowing variables
     ["@variable.builtin"] = "#bb9af7", -- purple accent
-    ["@property"] = "#d0a5c8",    -- moonPhase, petals, length properties
-    ["@variable.member"] = "#7aa2f7", -- blue accent for object members
+    ["@property"] = "#d0a5c8",    -- moonPhase, petals, length properties (pink in screenshot)
+    ["@variable.member"] = "#d0a5c8", -- object members should match properties
     
-    -- Functions & Methods (blue accents for built-ins)
-    ["@function"] = "#d0a5c8",    -- NightBloom function name
-    ["@function.builtin"] = "#7aa2f7", -- useState, useEffect (blue)
+    -- Functions & Methods (from screenshot - blue for built-ins)
+    ["@function"] = "#d0a5c8",    -- NightBloom function name (pink)
+    ["@function.builtin"] = "#7aa2f7", -- useState, useEffect (blue in screenshot)
     ["@function.macro"] = "#bb9af7",   -- purple accent
-    ["@method"] = "#d0a5c8",      -- methods use function color
+    ["@method"] = "#7aa2f7",      -- method calls should be blue like built-ins
     
-    -- Literals
-    ["@string"] = "#e0c0d5",     -- 'new', 'full', template strings
-    ["@number"] = "#f7d0e8",     -- different from string
+    -- Literals (from screenshot)
+    ["@string"] = "#e0c0d5",     -- 'react', 'new', 'full' should be pink, not green
+    ["@number"] = "#f7d0e8",     -- numbers
     ["@boolean"] = "#c090b8",    -- false, true
-    ["@string.special"] = "#9ece6a", -- special string handling (green)
+    ["@string.special"] = "#e0c0d5", -- template strings should match regular strings
     
-    -- Types (from HTML mapping category)
-    ["@type"] = "#d0a5c8",       -- NightYozakura, Petal types
-    ["@type.builtin"] = "#c090b8", -- number built-in type
-    ["@interface"] = "#bb9af7",   -- interface keyword gets purple
+    -- Types (from screenshot - should be pink)
+    ["@type"] = "#d0a5c8",       -- NightYozakura, Petal types (pink in screenshot)
+    ["@type.builtin"] = "#c090b8", -- number, boolean built-in types
+    ["@interface"] = "#c090b8",   -- interface keyword (not purple)
     ["@namespace"] = "#7aa2f7",   -- namespaces get blue
     ["@constructor"] = "#d0a5c8",
     
-    -- Keywords (from code preview)
+    -- Keywords (from screenshot)
     ["@keyword"] = "#c090b8",     -- const, if, return
     ["@keyword.import"] = "#bb9af7", -- import gets purple
     ["@keyword.return"] = "#7aa2f7", -- return gets blue accent
