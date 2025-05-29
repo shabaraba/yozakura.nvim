@@ -27,13 +27,30 @@ A Neovim colorscheme inspired by cherry blossoms at night, designed with eye com
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
+-- Method 1: Using opts (recommended)
+{
+  "shabaraba/yozakura.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {
+    palette = "night_blue",
+    transparent = true,
+  },
+  config = function(_, opts)
+    require("yozakura").setup(opts)
+    vim.cmd.colorscheme("yozakura")
+  end,
+}
+
+-- Method 2: Using config function
 {
   "shabaraba/yozakura.nvim",
   lazy = false,
   priority = 1000,
   config = function()
     require("yozakura").setup({
-      palette = "night_blue", -- Use night_blue palette
+      palette = "night_blue",
+      transparent = true,
     })
     vim.cmd.colorscheme("yozakura")
   end,
