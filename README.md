@@ -1,6 +1,16 @@
 # 🌸 Yozakura.nvim
 
+<div align="center">
+  <img src="assets/yozakura-hero.png" alt="Yozakura.nvim - Night Cherry Blossoms" width="600"/>
+</div>
+
 A Neovim colorscheme inspired by cherry blossoms at night, designed with eye comfort and readability in mind.
+
+## Requirements
+
+- Neovim >= 0.8.0
+- Terminal with true color support
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) (highly recommended for proper syntax highlighting)
 
 ## Features
 
@@ -21,15 +31,27 @@ A Neovim colorscheme inspired by cherry blossoms at night, designed with eye com
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
+-- Method 1: Using opts (simplest)
+{
+  "shabaraba/yozakura.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {
+    palette = "night_blue",
+    transparent = true,
+  },
+}
+
+-- Method 2: Using config function (if you need more control)
 {
   "shabaraba/yozakura.nvim",
   lazy = false,
   priority = 1000,
   config = function()
     require("yozakura").setup({
-      -- Your configuration here
+      palette = "night_blue",
+      transparent = true,
     })
-    vim.cmd.colorscheme("yozakura")
   end,
 }
 ```
@@ -52,10 +74,10 @@ use {
 
 ```lua
 require("yozakura").setup({
-  transparent = false,
-  italic_comments = true,
-  dim_inactive = false,
-  palette = nil, -- nil | "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
+  transparent = false,       -- Enable transparent background
+  italic_comments = true,    -- Use italic for comments
+  dim_inactive = false,      -- Dim inactive windows (not implemented yet)
+  palette = "soft_contrast", -- "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
   styles = {
     comments = { italic = true },
     keywords = { italic = false },
@@ -96,34 +118,62 @@ require('yozakura').set_palette('night_blue')
 require('yozakura').set_palette(nil)
 ```
 
+## Gallery
+
+<div align="center">
+
+### Soft Contrast (Default)
+<img src="assets/palette_soft_contrast.png" alt="Soft Contrast Palette" width="300"/>
+
+*Moderate contrast ratios (7:1-10:1) optimized for long coding sessions*
+
+### Warm Gray  
+<img src="assets/palette_warm_gray.png" alt="Warm Gray Palette" width="300"/>
+
+*Warm gray base colors that reduce blue light exposure for minimal eye strain*
+
+### Muted Rose
+<img src="assets/palette_muted_rose.png" alt="Muted Rose Palette" width="300"/>
+
+*Subtle rose tones with excellent color distinction and focus enhancement*
+
+### Night Blue
+<img src="assets/palette_night_blue.png" alt="Night Blue Palette" width="300"/>
+
+*Night-themed palette with blue accents, perfect for late-night coding sessions*
+
+</div>
+
 ## Palette Options
 
-### Default (Soft Contrast)
-When no palette is specified, the soft contrast palette is used by default.
-
-### Soft Contrast
+### Using Soft Contrast (Default)
 ```lua
-palette = "soft_contrast"
+palette = "soft_contrast"  -- or omit for default
 ```
-Moderate contrast ratios (7:1-10:1) optimized for long coding sessions.
 
-### Warm Gray
+### Using Warm Gray
 ```lua
 palette = "warm_gray"
 ```
-Warm gray base colors that reduce blue light exposure for minimal eye strain.
 
-### Muted Rose
+### Using Muted Rose
 ```lua
 palette = "muted_rose"
 ```
-Subtle rose tones with excellent color distinction and focus enhancement.
 
-### Night Blue
+### Using Night Blue
 ```lua
 palette = "night_blue"
 ```
-Night-themed palette with blue accents, perfect for late-night coding sessions.
+
+### Transparent Background
+```lua
+require("yozakura").setup({
+  transparent = true,
+  palette = "night_blue"
+})
+```
+Enable transparent background to blend with your terminal background.
 
 ## Color Design Principles
 

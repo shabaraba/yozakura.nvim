@@ -1,31 +1,36 @@
 local M = {}
 
-function M.setup(palette)
+function M.setup(palette, config)
   local hl = {}
   
+  -- Use passed config or get from config module
+  config = config or require("yozakura.config").get()
+  local palette_name = config.palette or "soft_contrast"
+  local theme_mappings = require("yozakura.theme_mappings")
+  
   -- Editor highlights
-  hl.Normal = { fg = palette.fg0, bg = palette.bg0 }
-  hl.NormalFloat = { fg = palette.fg0, bg = palette.bg1 }
-  hl.FloatBorder = { fg = palette.sakura_muted, bg = palette.bg1 }
-  hl.ColorColumn = { bg = palette.bg1 }
+  hl.Normal = { fg = palette.fg0, bg = config.transparent and palette.none or palette.bg0 }
+  hl.NormalFloat = { fg = palette.fg0, bg = config.transparent and palette.none or palette.bg1 }
+  hl.FloatBorder = { fg = palette.sakura_muted, bg = config.transparent and palette.none or palette.bg1 }
+  hl.ColorColumn = { bg = config.transparent and palette.none or palette.bg1 }
   hl.Cursor = { fg = palette.bg0, bg = palette.sakura }
-  hl.CursorLine = { bg = palette.bg1 }
-  hl.CursorLineNr = { fg = palette.sakura, bg = palette.bg1 }
+  hl.CursorLine = { bg = config.transparent and palette.none or palette.bg1 }
+  hl.CursorLineNr = { fg = palette.sakura, bg = config.transparent and palette.none or palette.bg1 }
   hl.LineNr = { fg = palette.fg3 }
-  hl.SignColumn = { fg = palette.fg3, bg = palette.bg0 }
+  hl.SignColumn = { fg = palette.fg3, bg = config.transparent and palette.none or palette.bg0 }
   hl.VertSplit = { fg = palette.bg2 }
   hl.EndOfBuffer = { fg = palette.bg2 }
-  hl.Folded = { fg = palette.fg2, bg = palette.bg1 }
-  hl.FoldColumn = { fg = palette.fg3, bg = palette.bg0 }
+  hl.Folded = { fg = palette.fg2, bg = config.transparent and palette.none or palette.bg1 }
+  hl.FoldColumn = { fg = palette.fg3, bg = config.transparent and palette.none or palette.bg0 }
   
   -- Statusline
-  hl.StatusLine = { fg = palette.fg1, bg = palette.bg2 }
-  hl.StatusLineNC = { fg = palette.fg3, bg = palette.bg1 }
+  hl.StatusLine = { fg = palette.fg1, bg = config.transparent and palette.none or palette.bg2 }
+  hl.StatusLineNC = { fg = palette.fg3, bg = config.transparent and palette.none or palette.bg1 }
   
   -- Pmenu
-  hl.Pmenu = { fg = palette.fg1, bg = palette.bg1 }
+  hl.Pmenu = { fg = palette.fg1, bg = config.transparent and palette.none or palette.bg1 }
   hl.PmenuSel = { fg = palette.bg0, bg = palette.sakura }
-  hl.PmenuSbar = { bg = palette.bg2 }
+  hl.PmenuSbar = { bg = config.transparent and palette.none or palette.bg2 }
   hl.PmenuThumb = { bg = palette.sakura_muted }
   
   -- Search
@@ -34,13 +39,13 @@ function M.setup(palette)
   hl.CurSearch = { fg = palette.bg0, bg = palette.sakura }
   
   -- Visual
-  hl.Visual = { bg = palette.bg3 }
-  hl.VisualNOS = { bg = palette.bg3 }
+  hl.Visual = { bg = config.transparent and palette.bg2 or palette.bg3 }
+  hl.VisualNOS = { bg = config.transparent and palette.bg2 or palette.bg3 }
   
   -- Diff
-  hl.DiffAdd = { fg = palette.green, bg = palette.bg1 }
-  hl.DiffChange = { fg = palette.yellow, bg = palette.bg1 }
-  hl.DiffDelete = { fg = palette.red, bg = palette.bg1 }
+  hl.DiffAdd = { fg = palette.green, bg = config.transparent and palette.none or palette.bg1 }
+  hl.DiffChange = { fg = palette.yellow, bg = config.transparent and palette.none or palette.bg1 }
+  hl.DiffDelete = { fg = palette.red, bg = config.transparent and palette.none or palette.bg1 }
   hl.DiffText = { fg = palette.bg0, bg = palette.yellow }
   
   -- Syntax
@@ -59,7 +64,7 @@ function M.setup(palette)
   hl.Conditional = { fg = palette.sakura_dark }
   hl.Repeat = { fg = palette.sakura_dark }
   hl.Label = { fg = palette.sakura_dark }
-  hl.Operator = { fg = palette.fg1 }
+  hl.Operator = { fg = theme_mappings.get_mapping(palette_name, "@operator") or palette.fg1 }
   hl.Keyword = { fg = palette.sakura_dark }
   hl.Exception = { fg = palette.red }
   
@@ -77,7 +82,7 @@ function M.setup(palette)
   hl.Special = { fg = palette.sakura_light }
   hl.SpecialChar = { fg = palette.sakura_light }
   hl.Tag = { fg = palette.sakura_light }
-  hl.Delimiter = { fg = palette.fg1 }
+  hl.Delimiter = { fg = theme_mappings.get_mapping(palette_name, "@punctuation.delimiter") or palette.fg1 }
   hl.SpecialComment = { fg = palette.fg2, italic = true }
   hl.Debug = { fg = palette.red }
   
@@ -98,16 +103,17 @@ function M.setup(palette)
   hl.GitSignsDelete = { fg = palette.red }
   
   -- Treesitter (updated for Neovim 0.9+)
-  -- Get palette name from config
-  local config = require("yozakura.config").get()
-  local palette_name = config.palette or "soft_contrast"
-  local theme_mappings = require("yozakura.theme_mappings")
   
   -- Apply theme-specific mappings
   local function apply_mapping(group)
     local color = theme_mappings.get_mapping(palette_name, group)
     if color then
       hl[group] = { fg = color }
+      -- Also set the non-@ version for compatibility
+      local legacy_group = group:gsub("^@", "")
+      if legacy_group ~= group then
+        hl[legacy_group] = { fg = color }
+      end
     end
   end
   
@@ -216,7 +222,10 @@ function M.setup(palette)
   hl["@label"] = { fg = palette.sakura_dark }
   
   -- Operators
-  hl["@operator"] = { fg = palette.fg1 }
+  apply_mapping("@operator")
+  if not hl["@operator"] then
+    hl["@operator"] = { fg = palette.fg1 }
+  end
   
   -- Exceptions
   hl["@exception"] = { fg = palette.red }
@@ -263,9 +272,20 @@ function M.setup(palette)
   hl["@include"] = { fg = palette.purple }
   
   -- Punctuation
-  hl["@punctuation.delimiter"] = { fg = palette.fg1 }
-  hl["@punctuation.bracket"] = { fg = palette.fg1 }
-  hl["@punctuation.special"] = { fg = palette.sakura_light }
+  apply_mapping("@punctuation.delimiter")
+  apply_mapping("@punctuation.bracket")
+  apply_mapping("@punctuation.special")
+  
+  -- If not set by theme_mappings, use default
+  if not hl["@punctuation.delimiter"] then
+    hl["@punctuation.delimiter"] = { fg = palette.fg1 }
+  end
+  if not hl["@punctuation.bracket"] then
+    hl["@punctuation.bracket"] = { fg = palette.fg1 }
+  end
+  if not hl["@punctuation.special"] then
+    hl["@punctuation.special"] = { fg = palette.sakura_light }
+  end
   
   -- Comments
   hl["@comment"] = { fg = palette.fg3, italic = true }
@@ -350,13 +370,21 @@ function M.setup(palette)
   hl["@lsp.type.method.lua"] = { fg = palette.sakura }
   
   -- TypeScript/JavaScript
-  hl["@lsp.type.class.typescript"] = { fg = palette.blue }
-  hl["@lsp.type.enum.typescript"] = { fg = palette.blue }
-  hl["@lsp.type.interface.typescript"] = { fg = palette.blue }
+  hl["@lsp.type.class.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
+  hl["@lsp.type.enum.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
+  hl["@lsp.type.interface.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
   hl["@lsp.type.namespace.typescript"] = { fg = palette.purple }
   hl["@lsp.type.parameter.typescript"] = { fg = palette.fg1 }
-  hl["@lsp.type.property.typescript"] = { fg = palette.fg0 }
-  hl["@lsp.type.variable.typescript"] = { fg = palette.fg0 }
+  hl["@lsp.type.property.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@property") or palette.fg0 }
+  hl["@lsp.type.variable.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@variable") or palette.fg0 }
+  
+  -- Additional TypeScript/JavaScript specific groups
+  hl["@type.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
+  hl["@type.javascript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
+  hl["@function.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@function") or palette.sakura }
+  hl["@function.javascript"] = { fg = theme_mappings.get_mapping(palette_name, "@function") or palette.sakura }
+  hl["@string.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@string") or palette.cyan }
+  hl["@string.javascript"] = { fg = theme_mappings.get_mapping(palette_name, "@string") or palette.cyan }
   
   -- Python
   hl["@lsp.type.class.python"] = { fg = palette.blue }

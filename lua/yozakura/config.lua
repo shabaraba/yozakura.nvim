@@ -4,7 +4,7 @@ local defaults = {
   transparent = false,
   italic_comments = true,
   dim_inactive = false,
-  palette = nil, -- nil | "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
+  palette = "soft_contrast", -- "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
   styles = {
     comments = { italic = true },
     keywords = { italic = false },
@@ -13,10 +13,10 @@ local defaults = {
   },
 }
 
-M.options = {}
+M.options = vim.deepcopy(defaults)
 
 function M.setup(opts)
-  M.options = vim.tbl_deep_extend("force", defaults, opts or {})
+  M.options = vim.tbl_deep_extend("force", M.options, opts or {})
 end
 
 function M.get()

@@ -28,67 +28,85 @@ M.mappings = {
     ["@keyword"] = "#c386b8",        -- const, return, interface
     ["@keyword.import"] = "#9a6692",
     ["@keyword.operator"] = "#c386b8",
+    
+    -- Punctuation (white/light colors)
+    ["@punctuation.delimiter"] = "#d9d9e9",  -- , ; :
+    ["@punctuation.bracket"] = "#d9d9e9",    -- () {} []
+    ["@punctuation.special"] = "#d9d9e9",    -- Other special punctuation
+    ["@operator"] = "#d9d9e9",               -- = + - * / etc
   },
   
   warm_gray = {
-    -- Variables (from HTML mapping category)
-    ["@variable"] = "#b08a95",
+    -- Variables (from screenshot)
+    ["@variable"] = "#b08a95",      -- night variable
     ["@variable.builtin"] = "#9f6f85",
-    ["@property"] = "#d5a0b5",  -- Properties use function color
+    ["@property"] = "#d5a0b5",      -- temperature, eyeStrain properties
     
     -- Functions & Methods
-    ["@function"] = "#d5a0b5",     -- function names
+    ["@function"] = "#d5a0b5",      -- relax function
     ["@function.builtin"] = "#cc8fa5",
     ["@function.macro"] = "#dba5b5",
-    ["@method"] = "#d5a0b5",       -- methods (log in code preview)
+    ["@method"] = "#d5a0b5",        -- log method
     
     -- Literals
-    ["@string"] = "#e0b5c5",
-    ["@number"] = "#e8c0d0",  -- different from string for distinction
-    ["@boolean"] = "#d5a0b5", -- from HTML boolean mapping
+    ["@string"] = "#e0b5c5",        -- 'warm', 'minimal', 'Comfortable viewing'
+    ["@number"] = "#cc8fa5",        -- use type color for number (from screenshot)
+    ["@boolean"] = "#d5a0b5",
     
-    -- Types (from HTML mapping category)
-    ["@type"] = "#b57f95",
-    ["@type.builtin"] = "#cc8fa5",  -- number type in code preview
+    -- Types (from screenshot)
+    ["@type"] = "#d5a0b5",          -- WarmNight type (pink in screenshot)
+    ["@type.builtin"] = "#cc8fa5",  -- number type (darker pink)
     ["@constructor"] = "#cc8fa5",
     
-    -- Keywords (from code preview)
-    ["@keyword"] = "#cc8fa5",     -- type, function keywords
+    -- Keywords
+    ["@keyword"] = "#cc8fa5",       -- type, function keywords
     ["@keyword.import"] = "#dba5b5",
     ["@keyword.operator"] = "#cc8fa5",
+    
+    -- Punctuation (white/light colors)
+    ["@punctuation.delimiter"] = "#e0e0d5",  -- , ; :
+    ["@punctuation.bracket"] = "#e0e0d5",    -- () {} []
+    ["@punctuation.special"] = "#e0e0d5",    -- Other special punctuation
+    ["@operator"] = "#e0e0d5",               -- = + - * / etc
   },
   
   muted_rose = {
-    -- Variables (from HTML mapping category)
-    ["@variable"] = "#a08590",    -- saturation property in code
+    -- Variables (from screenshot)
+    ["@variable"] = "#a08590",      -- saturation, visibility vars
     ["@variable.builtin"] = "#906a7a",
-    ["@property"] = "#a08590",    -- properties use variable color for subtle distinction
+    ["@property"] = "#a08590",      -- properties use variable color
     
     -- Functions & Methods  
-    ["@function"] = "#c79fad",    -- bloom function name
+    ["@function"] = "#c79fad",      -- bloom function
     ["@function.builtin"] = "#b88a9a",
     ["@function.macro"] = "#c5a5b8",
-    ["@method"] = "#c79fad",      -- methods use function color
+    ["@method"] = "#c79fad",        -- methods use function color
     
     -- Literals
-    ["@string"] = "#d6b5c0",     -- 'excellent' string
-    ["@number"] = "#d6b5c0",     -- 0.4, 0.1 numbers - same as string
-    ["@boolean"] = "#c79fad",    -- from HTML boolean mapping
+    ["@string"] = "#d6b5c0",        -- 'excellent' string
+    ["@number"] = "#d6b5c0",        -- 0.4, 0.1 numbers
+    ["@boolean"] = "#c79fad",
     
-    -- Types (from HTML mapping category)
-    ["@type"] = "#a67a8a",       -- darker type colors
-    ["@type.builtin"] = "#b88a9a", -- number, string, void types
+    -- Types (from screenshot)
+    ["@type"] = "#c79fad",          -- MutedSakura type (pink in screenshot)
+    ["@type.builtin"] = "#b88a9a",  -- number, string, void types
     ["@constructor"] = "#b88a9a",
     
-    -- Keywords (from code preview)
-    ["@keyword"] = "#b88a9a",     -- class, private, public, this
+    -- Keywords
+    ["@keyword"] = "#b88a9a",       -- class, private, public
     ["@keyword.import"] = "#c5a5b8",
-    ["@keyword.operator"] = "#a67a8a", -- different from other themes
+    ["@keyword.operator"] = "#a67a8a",
     
     -- Special (muted_rose specific)
     ["@string.regexp"] = "#d5889c",
     ["@comment.todo"] = "#e8a888",
     ["@markup.link"] = "#a5c4d9",
+    
+    -- Punctuation (white/light colors)
+    ["@punctuation.delimiter"] = "#d8d8e0",  -- , ; :
+    ["@punctuation.bracket"] = "#d8d8e0",    -- () {} []
+    ["@punctuation.special"] = "#d8d8e0",    -- Other special punctuation
+    ["@operator"] = "#d8d8e0",               -- = + - * / etc
   },
   
   night_blue = {
@@ -128,6 +146,12 @@ M.mappings = {
     ["@comment.todo"] = "#ff9e64",
     ["@diff.plus"] = "#9ece6a",
     ["@markup.link"] = "#73daca",
+    
+    -- Punctuation (white/light colors)
+    ["@punctuation.delimiter"] = "#e0e0f0",  -- , ; :
+    ["@punctuation.bracket"] = "#e0e0f0",    -- () {} []
+    ["@punctuation.special"] = "#e0e0f0",    -- Other special punctuation
+    ["@operator"] = "#e0e0f0",               -- = + - * / etc
   }
 }
 
