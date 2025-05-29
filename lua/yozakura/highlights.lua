@@ -150,7 +150,7 @@ function M.setup(palette)
   elseif palette_name == "muted_rose" then
     hl["@string"] = { fg = palette.sakura_light } -- #d6b5c0
     hl["@string.documentation"] = { fg = palette.sakura_light }
-    hl["@string.regex"] = { fg = palette.red } -- #d5889c (special for muted_rose)
+    hl["@string.regex"] = { fg = "#d5889c" } -- Special color for muted_rose
     hl["@string.escape"] = { fg = palette.sakura }
     hl["@string.special"] = { fg = palette.sakura }
     hl["@string.special.symbol"] = { fg = palette.orange }
@@ -407,7 +407,7 @@ function M.setup(palette)
     hl["@comment.documentation"] = { fg = palette.fg3, italic = true }
     hl["@comment.error"] = { fg = palette.red, italic = true }
     hl["@comment.warning"] = { fg = palette.yellow, italic = true }
-    hl["@comment.todo"] = { fg = palette.orange, italic = true, bold = true } -- #e8a888
+    hl["@comment.todo"] = { fg = "#e8a888", italic = true, bold = true } -- Special color
     hl["@comment.note"] = { fg = palette.green, italic = true }
   else
     hl["@comment"] = { fg = palette.fg3, italic = true }
@@ -461,9 +461,9 @@ function M.setup(palette)
     hl["@markup.link.label"] = { fg = palette.sakura }
     hl["@markup.link.url"] = { fg = palette.cyan, underline = true }
   elseif palette_name == "muted_rose" then
-    hl["@markup.link"] = { fg = palette.blue, underline = true } -- #a5c4d9
+    hl["@markup.link"] = { fg = "#a5c4d9", underline = true } -- Special color
     hl["@markup.link.label"] = { fg = palette.sakura }
-    hl["@markup.link.url"] = { fg = palette.blue, underline = true }
+    hl["@markup.link.url"] = { fg = "#a5c4d9", underline = true }
   else
     hl["@markup.link"] = { fg = palette.blue, underline = true }
     hl["@markup.link.label"] = { fg = palette.sakura }
