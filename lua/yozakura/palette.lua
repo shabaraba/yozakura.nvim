@@ -93,6 +93,37 @@ M.yozakura = {
     orange = "#d0a890",
     
     none = "NONE",
+  },
+  
+  night_blue = {
+    -- Background colors (夜の青をベースにした背景)
+    bg0 = "#1a1a26",         -- 最も暗い背景（夜空）
+    bg1 = "#232334",         -- 暗い背景
+    bg2 = "#2e3145",         -- 選択範囲
+    bg3 = "#3a3d55",         -- 明るめの背景
+    
+    -- Foreground colors
+    fg0 = "#e0c0d5",         -- 文字列 (明るい桜色)
+    fg1 = "#d0a5c8",         -- 関数 (メイン桜色)
+    fg2 = "#c090b8",         -- キーワード (暗い桜色)
+    fg3 = "#565b7e",         -- コメント (青みがかったグレー)
+    
+    -- Base colors (Night Sakura with Blue accent)
+    sakura = "#d0a5c8",      -- メインの桜色
+    sakura_light = "#e0c0d5", -- 明るい桜色
+    sakura_dark = "#c090b8",  -- 暗い桜色
+    sakura_muted = "#9d88a5", -- 落ち着いた桜色（青の影響）
+    
+    -- Accent colors (Night theme with blue tint)
+    red = "#f7768e",         -- 夜の赤
+    green = "#9ece6a",       -- 夜の緑
+    yellow = "#ff9e64",      -- 夜のオレンジ
+    blue = "#7aa2f7",        -- 夜の青（アクセント）
+    purple = "#bb9af7",      -- 夜の紫
+    cyan = "#73daca",        -- 夜のシアン
+    orange = "#ff9e64",      -- 夜のオレンジ
+    
+    none = "NONE",
   }
 }
 

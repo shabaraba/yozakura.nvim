@@ -4,10 +4,11 @@ A Neovim colorscheme inspired by cherry blossoms at night, designed with eye com
 
 ## Features
 
-- 🎨 **Three carefully crafted palettes**:
+- 🎨 **Four carefully crafted palettes**:
   - `soft_contrast`: Gentle contrast (7:1-10:1) for extended coding sessions
   - `warm_gray`: Warm gray base that reduces blue light exposure
   - `muted_rose`: Muted rose tones with perfect balance of visibility and comfort
+  - `night_blue`: Night-themed with blue accents for late-night coding
 - 👁️ **Eye-friendly design**: Scientifically designed contrast ratios to minimize eye strain
 - 🔍 **High readability**: WCAG AAA compliant color combinations
 - 🌙 **Dark theme optimized**: Perfect for low-light environments
@@ -54,7 +55,7 @@ require("yozakura").setup({
   transparent = false,
   italic_comments = true,
   dim_inactive = false,
-  palette = nil, -- nil | "soft_contrast" | "warm_gray" | "muted_rose"
+  palette = nil, -- nil | "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
   styles = {
     comments = { italic = true },
     keywords = { italic = false },
@@ -72,12 +73,14 @@ Yozakura provides commands to switch palettes on the fly:
 :YozakuraSoftContrast   " Switch to soft contrast palette
 :YozakuraWarmGray       " Switch to warm gray palette
 :YozakuraMutedRose      " Switch to muted rose palette
+:YozakuraNightBlue      " Switch to night blue palette
 
 " Or use the generic command with tab completion
 :YozakuraPalette <palette_name>
 :YozakuraPalette soft_contrast
 :YozakuraPalette warm_gray
 :YozakuraPalette muted_rose
+:YozakuraPalette night_blue
 ```
 
 You can also switch palettes programmatically:
@@ -87,6 +90,7 @@ You can also switch palettes programmatically:
 require('yozakura').set_palette('soft_contrast')
 require('yozakura').set_palette('warm_gray')
 require('yozakura').set_palette('muted_rose')
+require('yozakura').set_palette('night_blue')
 
 -- Switch back to default (soft_contrast)
 require('yozakura').set_palette(nil)
@@ -114,6 +118,12 @@ Warm gray base colors that reduce blue light exposure for minimal eye strain.
 palette = "muted_rose"
 ```
 Subtle rose tones with excellent color distinction and focus enhancement.
+
+### Night Blue
+```lua
+palette = "night_blue"
+```
+Night-themed palette with blue accents, perfect for late-night coding sessions.
 
 ## Color Design Principles
 
