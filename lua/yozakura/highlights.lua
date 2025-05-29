@@ -3,6 +3,11 @@ local M = {}
 function M.setup(palette)
   local hl = {}
   
+  -- Get palette name from config
+  local config = require("yozakura.config").get()
+  local palette_name = config.palette or "soft_contrast"
+  local theme_mappings = require("yozakura.theme_mappings")
+  
   -- Editor highlights
   hl.Normal = { fg = palette.fg0, bg = palette.bg0 }
   hl.NormalFloat = { fg = palette.fg0, bg = palette.bg1 }
@@ -98,16 +103,17 @@ function M.setup(palette)
   hl.GitSignsDelete = { fg = palette.red }
   
   -- Treesitter (updated for Neovim 0.9+)
-  -- Get palette name from config
-  local config = require("yozakura.config").get()
-  local palette_name = config.palette or "soft_contrast"
-  local theme_mappings = require("yozakura.theme_mappings")
   
   -- Apply theme-specific mappings
   local function apply_mapping(group)
     local color = theme_mappings.get_mapping(palette_name, group)
     if color then
       hl[group] = { fg = color }
+      -- Also set the non-@ version for compatibility
+      local legacy_group = group:gsub("^@", "")
+      if legacy_group ~= group then
+        hl[legacy_group] = { fg = color }
+      end
     end
   end
   
@@ -364,13 +370,21 @@ function M.setup(palette)
   hl["@lsp.type.method.lua"] = { fg = palette.sakura }
   
   -- TypeScript/JavaScript
-  hl["@lsp.type.class.typescript"] = { fg = palette.blue }
-  hl["@lsp.type.enum.typescript"] = { fg = palette.blue }
-  hl["@lsp.type.interface.typescript"] = { fg = palette.blue }
+  hl["@lsp.type.class.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
+  hl["@lsp.type.enum.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
+  hl["@lsp.type.interface.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
   hl["@lsp.type.namespace.typescript"] = { fg = palette.purple }
   hl["@lsp.type.parameter.typescript"] = { fg = palette.fg1 }
-  hl["@lsp.type.property.typescript"] = { fg = palette.fg0 }
-  hl["@lsp.type.variable.typescript"] = { fg = palette.fg0 }
+  hl["@lsp.type.property.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@property") or palette.fg0 }
+  hl["@lsp.type.variable.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@variable") or palette.fg0 }
+  
+  -- Additional TypeScript/JavaScript specific groups
+  hl["@type.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
+  hl["@type.javascript"] = { fg = theme_mappings.get_mapping(palette_name, "@type") or palette.blue }
+  hl["@function.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@function") or palette.sakura }
+  hl["@function.javascript"] = { fg = theme_mappings.get_mapping(palette_name, "@function") or palette.sakura }
+  hl["@string.typescript"] = { fg = theme_mappings.get_mapping(palette_name, "@string") or palette.cyan }
+  hl["@string.javascript"] = { fg = theme_mappings.get_mapping(palette_name, "@string") or palette.cyan }
   
   -- Python
   hl["@lsp.type.class.python"] = { fg = palette.blue }

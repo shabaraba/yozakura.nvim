@@ -2,6 +2,12 @@
 
 A Neovim colorscheme inspired by cherry blossoms at night, designed with eye comfort and readability in mind.
 
+## Requirements
+
+- Neovim >= 0.8.0
+- Terminal with true color support
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) (highly recommended for proper syntax highlighting)
+
 ## Features
 
 - 🎨 **Four carefully crafted palettes**:
