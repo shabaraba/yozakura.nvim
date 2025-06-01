@@ -15,8 +15,8 @@ A Neovim colorscheme inspired by cherry blossoms at night, designed with eye com
 ## Features
 
 - 🎨 **Four carefully crafted palettes**:
-  - `soft_contrast`: Gentle contrast (7:1-10:1) for extended coding sessions
-  - `warm_gray`: Warm gray base that reduces blue light exposure
+  - `teal_night`: Deep teal night with salmon pink accents for unique aesthetics
+  - `warm_gray`: Warm gray base that reduces blue light exposure (デフォルト)
   - `muted_rose`: Muted rose tones with perfect balance of visibility and comfort
   - `night_blue`: Night-themed with blue accents for late-night coding
 - 👁️ **Eye-friendly design**: Scientifically designed contrast ratios to minimize eye strain
@@ -77,7 +77,7 @@ require("yozakura").setup({
   transparent = false,       -- Enable transparent background
   italic_comments = true,    -- Use italic for comments
   dim_inactive = false,      -- Dim inactive windows (not implemented yet)
-  palette = "soft_contrast", -- "soft_contrast" | "warm_gray" | "muted_rose" | "night_blue"
+  palette = "warm_gray", -- "teal_night" | "warm_gray" | "muted_rose" | "night_blue"
   styles = {
     comments = { italic = true },
     keywords = { italic = false },
@@ -92,14 +92,14 @@ require("yozakura").setup({
 Yozakura provides commands to switch palettes on the fly:
 
 ```vim
-:YozakuraSoftContrast   " Switch to soft contrast palette
-:YozakuraWarmGray       " Switch to warm gray palette
+:YozakuraTealNight      " Switch to teal night palette
+:YozakuraWarmGray       " Switch to warm gray palette (デフォルト)
 :YozakuraMutedRose      " Switch to muted rose palette
 :YozakuraNightBlue      " Switch to night blue palette
 
 " Or use the generic command with tab completion
 :YozakuraPalette <palette_name>
-:YozakuraPalette soft_contrast
+:YozakuraPalette teal_night
 :YozakuraPalette warm_gray
 :YozakuraPalette muted_rose
 :YozakuraPalette night_blue
@@ -109,12 +109,12 @@ You can also switch palettes programmatically:
 
 ```lua
 -- Switch to a specific palette
-require('yozakura').set_palette('soft_contrast')
+require('yozakura').set_palette('teal_night')
 require('yozakura').set_palette('warm_gray')
 require('yozakura').set_palette('muted_rose')
 require('yozakura').set_palette('night_blue')
 
--- Switch back to default (soft_contrast)
+-- Switch back to default (warm_gray)
 require('yozakura').set_palette(nil)
 ```
 
@@ -122,10 +122,10 @@ require('yozakura').set_palette(nil)
 
 <div align="center">
 
-### Soft Contrast (Default)
-<img src="assets/palette_soft_contrast.png" alt="Soft Contrast Palette" width="300"/>
+### Teal Night
+<img src="assets/palette_teal_night.png" alt="Teal Night Palette" width="300"/>
 
-*Moderate contrast ratios (7:1-10:1) optimized for long coding sessions*
+*Deep teal night with salmon pink accents - unique and elegant design*
 
 ### Warm Gray  
 <img src="assets/palette_warm_gray.png" alt="Warm Gray Palette" width="300"/>
@@ -146,14 +146,14 @@ require('yozakura').set_palette(nil)
 
 ## Palette Options
 
-### Using Soft Contrast (Default)
+### Using Teal Night
 ```lua
-palette = "soft_contrast"  -- or omit for default
+palette = "teal_night"
 ```
 
-### Using Warm Gray
+### Using Warm Gray (Default)
 ```lua
-palette = "warm_gray"
+palette = "warm_gray"  -- or omit for default
 ```
 
 ### Using Muted Rose

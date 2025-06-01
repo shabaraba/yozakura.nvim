@@ -2,39 +2,53 @@ local M = {}
 
 -- Theme-specific Tree-sitter mappings based on HTML specification
 M.mappings = {
-  soft_contrast = {
-    -- Variables (from HTML mapping category)
-    ["@variable"] = "#a888a1",
-    ["@variable.builtin"] = "#9a6692",
-    ["@property"] = "#cba6c3",  -- Properties are function-colored to distinguish from variables
+  teal_night = {
+    -- Variables
+    ["@variable"] = "#8fa5a0",        -- 変数（青緑系）
+    ["@variable.builtin"] = "#7a928c", -- 組み込み変数
+    ["@property"] = "#a8c4a2",        -- プロパティ（緑系）
+    ["@variable.member"] = "#a8c4a2", -- メンバー変数
     
-    -- Functions & Methods (different colors for distinction)
-    ["@function"] = "#cba6c3",     -- function name
-    ["@function.builtin"] = "#c386b8",
-    ["@function.macro"] = "#b8a5d9",
-    ["@method"] = "#cba6c3",       -- method calls should match functions
+    -- Functions & Methods
+    ["@function"] = "#e8c5b8",        -- 関数（サーモンピンク）
+    ["@function.builtin"] = "#ddb0a0", -- 組み込み関数
+    ["@function.macro"] = "#b38270",   -- マクロ
+    ["@method"] = "#f0dcd4",          -- メソッド
     
     -- Literals
-    ["@string"] = "#d9b8cf",
-    ["@number"] = "#d9b8cf",  -- same as string
-    ["@boolean"] = "#c386b8", -- keyword-like (from code preview)
+    ["@string"] = "#a8c4a2",          -- 文字列（緑）
+    ["@number"] = "#f0dcd4",          -- 数値
+    ["@boolean"] = "#ddb0a0",         -- 真偽値
     
-    -- Types (from HTML mapping category)
-    ["@type"] = "#b076a5",      -- interface type in code
-    ["@type.builtin"] = "#c386b8", -- built-in types like number, boolean
-    ["@constructor"] = "#cba6c3",
+    -- Types
+    ["@type"] = "#c89988",            -- 型（落ち着いた色）
+    ["@type.builtin"] = "#b38270",    -- 組み込み型
+    ["@constructor"] = "#ddb0a0",     -- コンストラクタ
+    ["@interface"] = "#c89988",       -- インターフェイス
     
-    -- Keywords (from code preview)
-    ["@keyword"] = "#c386b8",        -- const, return, interface
-    ["@keyword.import"] = "#9a6692",
-    ["@keyword.operator"] = "#c386b8",
+    -- Keywords
+    ["@keyword"] = "#ddb0a0",         -- キーワード
+    ["@keyword.import"] = "#e8c5b8",  -- import
+    ["@keyword.operator"] = "#c89988", -- オペレーターキーワード
+    ["@keyword.return"] = "#ddb0a0",  -- return
     
-    -- Punctuation (white/light colors)
-    ["@punctuation.delimiter"] = "#d9d9e9",  -- , ; :
-    ["@punctuation.bracket"] = "#d9d9e9",    -- () {} []
-    ["@punctuation.special"] = "#d9d9e9",    -- Other special punctuation
-    ["@operator"] = "#d9d9e9",               -- = + - * / etc
+    -- Comments and Documentation
+    ["@comment"] = "#6e7f88",         -- コメント
+    ["@comment.todo"] = "#d4a373",    -- TODOコメント
+    
+    -- Punctuation
+    ["@punctuation.delimiter"] = "#e0e0d5",  -- , ; :
+    ["@punctuation.bracket"] = "#e0e0d5",    -- () {} []
+    ["@punctuation.special"] = "#e0e0d5",    -- Other special punctuation
+    ["@operator"] = "#e0e0d5",               -- = + - * / etc
+    
+    -- Special
+    ["@error"] = "#cd7f7f",           -- エラー
+    ["@warning"] = "#d4a373",         -- 警告
+    ["@string.regex"] = "#d4a373",    -- 正規表現
   },
+  
+  soft_contrast = {
   
   warm_gray = {
     -- Variables (from screenshot)
