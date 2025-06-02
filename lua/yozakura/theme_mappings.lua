@@ -49,6 +49,38 @@ M.mappings = {
   },
   
   soft_contrast = {
+    -- Variables
+    ["@variable"] = "#a8b2c8",
+    ["@variable.builtin"] = "#8a95b0",
+    ["@property"] = "#b5c0d5",
+    
+    -- Functions & Methods
+    ["@function"] = "#d5c8e0",
+    ["@function.builtin"] = "#c0b5d5",
+    ["@function.macro"] = "#b0a5c5",
+    ["@method"] = "#d5c8e0",
+    
+    -- Literals
+    ["@string"] = "#c8d5b5",
+    ["@number"] = "#e0d5c8",
+    ["@boolean"] = "#d5c8b5",
+    
+    -- Types
+    ["@type"] = "#c8b5d5",
+    ["@type.builtin"] = "#b5a8c8",
+    ["@constructor"] = "#c0b5d5",
+    
+    -- Keywords
+    ["@keyword"] = "#b5a8c8",
+    ["@keyword.import"] = "#c8b5d5",
+    ["@keyword.operator"] = "#a8b2c8",
+    
+    -- Punctuation
+    ["@punctuation.delimiter"] = "#e0e0d5",
+    ["@punctuation.bracket"] = "#e0e0d5",
+    ["@punctuation.special"] = "#e0e0d5",
+    ["@operator"] = "#e0e0d5",
+  },
   
   warm_gray = {
     -- Variables (from screenshot)
