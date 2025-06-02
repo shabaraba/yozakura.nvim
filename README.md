@@ -1,7 +1,7 @@
 # 🌸 Yozakura.nvim
 
 <div align="center">
-  <img src="assets/yozakura-hero.png" alt="Yozakura.nvim - Night Cherry Blossoms" width="600"/>
+  <img src="assets/yozakura-hero2.png" alt="Yozakura.nvim - Night Cherry Blossoms" width="600"/>
 </div>
 
 A Neovim colorscheme inspired by cherry blossoms at night, designed with eye comfort and readability in mind.
