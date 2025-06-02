@@ -5,7 +5,7 @@ function M.setup(palette, config)
   
   -- Use passed config or get from config module
   config = config or require("yozakura.config").get()
-  local palette_name = config.palette or "soft_contrast"
+  local palette_name = config.palette or "warm_gray"
   local theme_mappings = require("yozakura.theme_mappings")
   
   -- Editor highlights
