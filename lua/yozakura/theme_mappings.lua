@@ -48,8 +48,6 @@ M.mappings = {
     ["@string.regex"] = "#d4a373",    -- 正規表現
   },
   
-  soft_contrast = {
-  
   warm_gray = {
     -- Variables (from screenshot)
     ["@variable"] = "#b08a95",      -- night variable
