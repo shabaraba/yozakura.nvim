@@ -183,6 +183,46 @@ Enable transparent background to blend with your terminal background.
 4. **Gradual Brightness**: Natural depth perception from background to foreground
 5. **Consistent Hue**: Unified pink-to-rose color scheme to reduce cognitive load
 
+## Development
+
+This colorscheme is developed using [lush.nvim](https://github.com/rktjmp/lush.nvim) for easier maintenance and color adjustments.
+
+### For Contributors
+
+If you want to modify the colorscheme:
+
+1. Install lush.nvim:
+```lua
+-- Using lazy.nvim
+{ 'rktjmp/lush.nvim' }
+```
+
+2. Edit the lush definition:
+```bash
+nvim lua/lush_theme/yozakura.lua
+```
+
+3. Live preview your changes:
+```vim
+:Lushify
+```
+
+4. Compile to Lua (generates runtime files):
+```bash
+./scripts/compile-lush.lua
+```
+
+5. Commit the compiled files:
+```bash
+git add lua/yozakura/compiled/
+git commit -m "chore: update compiled colorscheme files"
+```
+
+**Important Notes**:
+- End users don't need lush.nvim installed. It's only required for development.
+- The compiled files in `lua/yozakura/compiled/` **must be committed** to the repository.
+- Always run the compile script after modifying `lua/lush_theme/yozakura.lua`.
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
