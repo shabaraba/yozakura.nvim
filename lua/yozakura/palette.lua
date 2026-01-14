@@ -127,6 +127,20 @@ M.yozakura = {
   }
 }
 
+--- Get all available palette names
+--- @return string[] List of palette names
+function M.get_palette_names()
+  local names = {}
+  for name, _ in pairs(M.yozakura) do
+    table.insert(names, name)
+  end
+  table.sort(names)  -- Sort alphabetically for consistency
+  return names
+end
+
+--- Setup and return the specified palette
+--- @param opts table|nil Options table with palette name
+--- @return table The selected palette configuration
 function M.setup(opts)
   local config = require("yozakura.config").get()
 

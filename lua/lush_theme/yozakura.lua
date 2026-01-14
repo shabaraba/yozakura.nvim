@@ -2,6 +2,10 @@
 -- Yozakura - A Lush-based Neovim colorscheme
 -- Inspired by cherry blossoms at night
 -- ===================================================================
+--- @module lush_theme.yozakura
+--- This is the development source for Yozakura colorscheme
+--- Requires lush.nvim for editing and compilation
+--- End-users get pre-compiled versions that don't require lush
 
 local lush = require('lush')
 local hsl = lush.hsl
@@ -10,7 +14,9 @@ local hsl = lush.hsl
 local config = require("yozakura.config").get()
 local palette_data = require("yozakura.palette").setup({ palette = config.palette })
 
--- Convert hex colors to HSL for lush
+--- Convert hex color to HSL for lush
+--- @param hex string Hex color code
+--- @return table HSL color object
 local function hex_to_hsl(hex)
   return hsl(hex)
 end
@@ -47,20 +53,12 @@ local p = {
   none = "NONE",
 }
 
--- Theme mappings for palette-specific overrides
-local theme_mappings = require("yozakura.theme_mappings")
+-- Palette name for conditional styling
 local palette_name = config.palette or "warm_gray"
 
--- Helper function to get theme-specific color or fallback
-local function theme_color(group, fallback)
-  local color = theme_mappings.get_mapping(palette_name, group)
-  if color then
-    return hex_to_hsl(color)
-  end
-  return fallback
-end
-
--- Transparent background helper
+--- Helper for transparent background support
+--- @param color any The color to use for background
+--- @return any Returns "NONE" if transparent is enabled, otherwise returns the color
 local function bg(color)
   if config.transparent then
     return p.none
@@ -133,7 +131,7 @@ local theme = lush(function(injected_functions)
     Conditional  { Statement },
     Repeat       { Statement },
     Label        { Statement },
-    Operator     { fg = theme_color("@operator", p.fg1) },
+    Operator     { fg = p.fg1 },
     Keyword      { fg = p.sakura_dark },
     Exception    { fg = p.red },
 
@@ -151,7 +149,7 @@ local theme = lush(function(injected_functions)
     Special      { fg = p.sakura_light },
     SpecialChar  { Special },
     Tag          { Special },
-    Delimiter    { fg = theme_color("@punctuation.delimiter", p.fg1) },
+    Delimiter    { fg = p.fg1 },
     SpecialComment { fg = p.fg2, gui = "italic" },
     Debug        { fg = p.red },
 
@@ -179,10 +177,10 @@ local theme = lush(function(injected_functions)
     -- Treesitter Groups
     -- ===================================================================
     -- Variables
-    sym"@variable"              { fg = theme_color("@variable", p.fg0) },
-    sym"@variable.builtin"      { fg = theme_color("@variable.builtin", p.fg0) },
+    sym"@variable"              { fg = p.fg0 },
+    sym"@variable.builtin"      { fg = p.fg0 },
     sym"@variable.parameter"    { fg = p.fg1 },
-    sym"@variable.member"       { fg = palette_name == "night_blue" and theme_color("@variable.member", p.fg0) or p.fg0 },
+    sym"@variable.member"       { fg = p.fg0 },
 
     -- Constants
     sym"@constant"              { Constant },
@@ -190,11 +188,11 @@ local theme = lush(function(injected_functions)
     sym"@constant.macro"        { Constant },
 
     -- Strings
-    sym"@string"                { fg = theme_color("@string", p.cyan) },
-    sym"@string.documentation"  { fg = theme_color("@string", p.fg0) },
-    sym"@string.regexp"         { fg = theme_color("@string.regexp", p.cyan) },
+    sym"@string"                { fg = p.cyan },
+    sym"@string.documentation"  { fg = p.fg0 },
+    sym"@string.regexp"         { fg = p.cyan },
     sym"@string.escape"         { fg = p.sakura },
-    sym"@string.special"        { fg = palette_name == "night_blue" and theme_color("@string.special", p.sakura) or p.sakura },
+    sym"@string.special"        { fg = p.sakura },
     sym"@string.special.symbol" { fg = p.orange },
     sym"@string.special.url"    { fg = p.blue, gui = "underline" },
 
@@ -203,34 +201,34 @@ local theme = lush(function(injected_functions)
     sym"@character.special"     { fg = p.sakura },
 
     -- Numbers & Booleans
-    sym"@number"                { fg = theme_color("@number", p.orange) },
+    sym"@number"                { fg = p.orange },
     sym"@number.float"          { sym"@number" },
-    sym"@boolean"               { fg = theme_color("@boolean", p.orange) },
+    sym"@boolean"               { fg = p.orange },
 
     -- Functions & Methods
-    sym"@function"              { fg = theme_color("@function", p.sakura) },
+    sym"@function"              { fg = p.sakura },
     sym"@function.builtin"      { sym"@function" },
     sym"@function.macro"        { sym"@function" },
     sym"@function.call"         { sym"@function" },
-    sym"@function.method"       { fg = theme_color("@method", p.sakura) },
+    sym"@function.method"       { fg = p.sakura },
     sym"@function.method.call"  { sym"@function.method" },
-    sym"@method"                { fg = theme_color("@method", p.sakura) },
+    sym"@method"                { fg = p.sakura },
     sym"@method.call"           { sym"@method" },
-    sym"@constructor"           { fg = theme_color("@constructor", p.sakura) },
+    sym"@constructor"           { fg = p.sakura },
 
     -- Parameters
     sym"@parameter"             { fg = p.fg1 },
     sym"@parameter.reference"   { sym"@parameter" },
 
     -- Keywords
-    sym"@keyword"               { fg = theme_color("@keyword", p.sakura_dark) },
+    sym"@keyword"               { fg = p.sakura_dark },
     sym"@keyword.coroutine"     { sym"@keyword" },
     sym"@keyword.function"      { sym"@keyword" },
-    sym"@keyword.operator"      { fg = theme_color("@keyword.operator", p.sakura_dark) },
-    sym"@keyword.import"        { fg = theme_color("@keyword.import", p.purple) },
+    sym"@keyword.operator"      { fg = p.sakura_dark },
+    sym"@keyword.import"        { fg = p.purple },
     sym"@keyword.storage"       { sym"@keyword" },
     sym"@keyword.repeat"        { sym"@keyword" },
-    sym"@keyword.return"        { fg = palette_name == "night_blue" and theme_color("@keyword.return", p.sakura_dark) or p.sakura_dark },
+    sym"@keyword.return"        { fg = p.sakura_dark },
     sym"@keyword.debug"         { fg = p.red },
     sym"@keyword.exception"     { fg = p.red },
 
@@ -245,22 +243,24 @@ local theme = lush(function(injected_functions)
     sym"@exception"             { Exception },
 
     -- Types
-    sym"@type"                  { fg = theme_color("@type", p.blue) },
+    sym"@type"                  { fg = p.blue },
     sym"@type.builtin"          { sym"@type" },
     sym"@type.definition"       { sym"@type" },
     sym"@type.qualifier"        { fg = p.sakura_dark },
-    sym"@interface"             { fg = palette_name == "night_blue" and theme_color("@interface", p.purple) or p.blue },
+    -- Night Blue uses purple for interfaces to differentiate from types
+    sym"@interface"             { fg = palette_name == "night_blue" and p.purple or p.blue },
 
     -- Attributes
     sym"@attribute"             { fg = p.purple },
     sym"@attribute.builtin"     { sym"@attribute" },
 
     -- Fields & Properties
-    sym"@field"                 { fg = theme_color("@field", theme_color("@property", p.fg0)) },
-    sym"@property"              { fg = theme_color("@property", p.fg0) },
+    sym"@field"                 { fg = p.fg0 },
+    sym"@property"              { fg = p.fg0 },
 
     -- Namespaces & Modules
-    sym"@namespace"             { fg = palette_name == "night_blue" and theme_color("@namespace", p.blue) or p.purple },
+    -- Night Blue uses blue for namespaces to match its blue accent theme
+    sym"@namespace"             { fg = palette_name == "night_blue" and p.blue or p.purple },
     sym"@namespace.builtin"     { sym"@namespace" },
     sym"@module"                { fg = p.purple },
     sym"@module.builtin"        { sym"@module" },
@@ -269,16 +269,16 @@ local theme = lush(function(injected_functions)
     sym"@include"               { PreProc },
 
     -- Punctuation
-    sym"@punctuation.delimiter" { fg = theme_color("@punctuation.delimiter", p.fg1) },
-    sym"@punctuation.bracket"   { fg = theme_color("@punctuation.bracket", p.fg1) },
-    sym"@punctuation.special"   { fg = theme_color("@punctuation.special", p.sakura_light) },
+    sym"@punctuation.delimiter" { fg = p.fg1 },
+    sym"@punctuation.bracket"   { fg = p.fg1 },
+    sym"@punctuation.special"   { fg = p.sakura_light },
 
     -- Comments
     sym"@comment"               { Comment },
     sym"@comment.documentation" { Comment },
     sym"@comment.error"         { fg = p.red, gui = "italic" },
     sym"@comment.warning"       { fg = p.yellow, gui = "italic" },
-    sym"@comment.todo"          { fg = theme_color("@comment.todo", p.blue), gui = "italic,bold" },
+    sym"@comment.todo"          { fg = p.blue, gui = "italic,bold" },
     sym"@comment.note"          { fg = p.green, gui = "italic" },
 
     -- Tags (HTML/XML)
@@ -297,7 +297,7 @@ local theme = lush(function(injected_functions)
     sym"@markup.quote"          { fg = p.fg2, gui = "italic" },
     sym"@markup.math"           { fg = p.orange },
     sym"@markup.environment"    { fg = p.purple },
-    sym"@markup.link"           { fg = theme_color("@markup.link", p.blue), gui = "underline" },
+    sym"@markup.link"           { fg = p.blue, gui = "underline" },
     sym"@markup.link.url"       { sym"@markup.link" },
     sym"@markup.link.label"     { fg = p.sakura },
     sym"@markup.raw"            { fg = p.cyan },
@@ -307,7 +307,7 @@ local theme = lush(function(injected_functions)
     sym"@markup.list.unchecked" { fg = p.fg2 },
 
     -- Diff
-    sym"@diff.plus"             { fg = palette_name == "night_blue" and theme_color("@diff.plus", p.green) or p.green },
+    sym"@diff.plus"             { fg = p.green },
     sym"@diff.minus"            { fg = p.red },
     sym"@diff.delta"            { fg = p.yellow },
 

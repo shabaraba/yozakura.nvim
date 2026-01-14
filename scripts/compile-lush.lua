@@ -10,12 +10,35 @@
 -- Add the project to the runtime path
 vim.opt.runtimepath:prepend(vim.fn.getcwd())
 
--- Add lush.nvim to runtime path
-local lush_path = vim.fn.expand("~/.local/share/nvim/lazy/lush.nvim")
-if vim.fn.isdirectory(lush_path) == 1 then
+-- Add lush.nvim to runtime path (supports multiple package managers)
+--- Check common plugin installation paths for lush.nvim
+local function find_lush_path()
+  local possible_paths = {
+    vim.fn.expand("~/.local/share/nvim/lazy/lush.nvim"),      -- lazy.nvim
+    vim.fn.expand("~/.local/share/nvim/site/pack/packer/start/lush.nvim"),  -- packer.nvim
+    vim.fn.expand("~/.local/share/nvim/site/pack/packer/opt/lush.nvim"),    -- packer (opt)
+    vim.fn.expand("~/.vim/plugged/lush.nvim"),                -- vim-plug (vim)
+    vim.fn.expand("~/.local/share/nvim/plugged/lush.nvim"),   -- vim-plug (neovim)
+    vim.fn.expand("~/.config/nvim/pack/*/start/lush.nvim"),   -- native packages
+  }
+
+  for _, path in ipairs(possible_paths) do
+    if vim.fn.isdirectory(path) == 1 then
+      return path
+    end
+  end
+
+  return nil
+end
+
+local lush_path = find_lush_path()
+if lush_path then
   vim.opt.runtimepath:prepend(lush_path)
 end
 
+--- Compile lush theme definitions to standalone Lua modules
+--- This function generates compiled palette files that don't require lush.nvim at runtime
+--- @return nil
 local function compile_theme()
   print("🌸 Compiling Yozakura lush theme...")
 
@@ -26,9 +49,9 @@ local function compile_theme()
           "  Using lazy.nvim: { 'rktjmp/lush.nvim' }")
   end
 
-  -- Get all available palettes
+  -- Get all available palettes dynamically
   local palette_module = require("yozakura.palette")
-  local palettes = { "teal_night", "warm_gray", "muted_rose", "night_blue" }
+  local palettes = palette_module.get_palette_names()
 
   for _, palette_name in ipairs(palettes) do
     print(string.format("  Compiling palette: %s", palette_name))
@@ -74,7 +97,6 @@ local function compile_theme()
           if group_def.gui then
             for attr in group_def.gui:gmatch("[^,]+") do
               attr = attr:match("^%s*(.-)%s*$") -- trim whitespace
-              attrs[attr] = true
               table.insert(attrs, string.format('%s = true', attr))
             end
           end

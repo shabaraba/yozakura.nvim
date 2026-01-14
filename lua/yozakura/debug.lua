@@ -1,14 +1,18 @@
+--- Debug utilities for Yozakura colorscheme
+--- @module yozakura.debug
 local M = {}
 
+--- Display current highlight groups and their colors
+--- Useful for debugging theme issues and verifying color application
+--- @return nil
 function M.show_highlights()
   local config = require("yozakura.config").get()
-  local palette_name = config.palette or "soft_contrast"
-  local theme_mappings = require("yozakura.theme_mappings")
-  
+  local palette_name = config.palette or "warm_gray"
+
   print("=== Yozakura Debug Info ===")
   print("Current palette: " .. palette_name)
   print("")
-  
+
   -- Key highlight groups to check
   local groups = {
     "@type",
@@ -35,20 +39,19 @@ function M.show_highlights()
     "Operator",
     "Delimiter",
   }
-  
+
   print("Highlight Groups:")
-  print(string.format("%-30s %-15s %s", "Group", "Actual Color", "Expected Color"))
-  print(string.rep("-", 60))
-  
+  print(string.format("%-30s %-15s", "Group", "Actual Color"))
+  print(string.rep("-", 50))
+
   for _, group in ipairs(groups) do
     local hl = vim.api.nvim_get_hl(0, { name = group })
-    local expected = theme_mappings.get_mapping(palette_name, group)
-    
+
     if hl.fg then
       local actual = string.format("#%06x", hl.fg)
-      print(string.format("%-30s %-15s %s", group, actual, expected or "(default)"))
+      print(string.format("%-30s %-15s", group, actual))
     else
-      print(string.format("%-30s %-15s %s", group, "(not set)", expected or "(default)"))
+      print(string.format("%-30s %-15s", group, "(not set)"))
     end
   end
   

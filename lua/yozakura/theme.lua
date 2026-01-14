@@ -1,5 +1,11 @@
+--- Theme loader for Yozakura colorscheme
+--- Handles loading compiled highlights and setting terminal colors
+--- @module yozakura.theme
 local M = {}
 
+--- Load the colorscheme with the current palette
+--- Applies highlights and configures terminal colors
+--- @return nil
 function M.load()
   vim.cmd("hi clear")
   if vim.fn.exists("syntax_on") then
