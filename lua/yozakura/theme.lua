@@ -1,18 +1,27 @@
+--- Theme loader for Yozakura colorscheme
+--- Handles loading compiled highlights and setting terminal colors
+--- @module yozakura.theme
 local M = {}
 
+--- Load the colorscheme with the current palette
+--- Applies highlights and configures terminal colors
+--- @return nil
 function M.load()
   vim.cmd("hi clear")
   if vim.fn.exists("syntax_on") then
     vim.cmd("syntax reset")
   end
-  
+
   vim.o.termguicolors = true
   vim.g.colors_name = "yozakura"
-  
+
   local config = require("yozakura.config").get()
-  local palette = require("yozakura.palette").setup({ palette = config.palette })
-  local highlights = require("yozakura.highlights").setup(palette, config)
-  
+  local palette_name = config.palette or "warm_gray"
+
+  -- Load compiled highlights (generated from lush theme)
+  local compiled = require(string.format("yozakura.compiled.%s", palette_name))
+  local highlights = compiled.setup()
+
   for group, settings in pairs(highlights) do
     vim.api.nvim_set_hl(0, group, settings)
   end
@@ -32,6 +41,7 @@ function M.load()
   end
   
   -- Terminal colors
+  local palette = require("yozakura.palette").setup({ palette = palette_name })
   vim.g.terminal_color_0 = palette.bg0
   vim.g.terminal_color_1 = palette.red
   vim.g.terminal_color_2 = palette.green

@@ -1,3 +1,4 @@
 test_palettes.lua
 *.swp
 .DS_Store
+.vibing/
