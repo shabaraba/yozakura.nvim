@@ -8,6 +8,10 @@ local M = {}
 
 function M.setup()
   local highlights = {
+    ["DiffTextAdd"] = { bg = "#3B5223" },
+    ["Added"] = { fg = "#9DCE69" },
+    ["Changed"] = { fg = "#FF9E66" },
+    ["Removed"] = { fg = "#F7788F" },
     ["@tag.attribute.jsx"] = { fg = "#CFA5C8" },
     ["@tag.jsx"] = { fg = "#E1C1D6" },
     ["@tag.attribute.tsx"] = { fg = "#CFA5C8" },
@@ -188,10 +192,10 @@ function M.setup()
     ["CurSearch"] = { fg = "#1B1B27", bg = "#CFA5C8" },
     ["Visual"] = { bg = "#3A3D55" },
     ["VisualNOS"] = { bg = "#3A3D55" },
-    ["DiffAdd"] = { fg = "#9DCE69", bg = "#232334" },
-    ["DiffChange"] = { fg = "#FF9E66", bg = "#232334" },
+    ["DiffAdd"] = { bg = "#2C381E" },
+    ["DiffChange"] = { bg = "#38281E" },
     ["Normal"] = { fg = "#E1C1D6", bg = "#1B1B27" },
-    ["DiffText"] = { fg = "#1B1B27", bg = "#FF9E66" },
+    ["DiffText"] = { bg = "#523423" },
     ["Comment"] = { fg = "#6E7296", italic = true },
     ["Constant"] = { fg = "#FF9E66" },
     ["String"] = { fg = "#72DACA" },
@@ -218,7 +222,7 @@ function M.setup()
     ["@markup.heading.4.markdown"] = { fg = "#CFA5C8", bold = true },
     ["@markup.heading.3.markdown"] = { fg = "#CFA5C8", bold = true },
     ["@markup.heading.2.markdown"] = { fg = "#CFA5C8", bold = true },
-    ["DiffDelete"] = { fg = "#F7788F", bg = "#232334" },
+    ["DiffDelete"] = { fg = "#64303A", bg = "#381E23" },
   }
   return highlights
 end
