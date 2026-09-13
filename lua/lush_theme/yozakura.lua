@@ -66,6 +66,21 @@ local function bg(color)
   return color
 end
 
+--- 差分の行背景。アクセントの色相はそのままに、彩度と明度だけ背景寄りに落とす
+--- fg0 に対して最低 6.4:1 を保つ（最も厳しいのは teal_night）
+--- @param accent any Accent color to take the hue from
+--- @return any
+local function diff_line(accent)
+  return accent.saturation(30).lightness(p.bg0.l + 4)
+end
+
+--- 差分の「変わった文字」背景。行より濃くしつつ fg0 に対して最低 4.5:1（WCAG AA）を保つ
+--- @param accent any Accent color to take the hue from
+--- @return any
+local function diff_text(accent)
+  return accent.saturation(40).lightness(p.bg0.l + 10)
+end
+
 ---@diagnostic disable: undefined-global
 local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
@@ -108,10 +123,37 @@ local theme = lush(function(injected_functions)
     VisualNOS    { Visual },
 
     -- Diff
-    DiffAdd      { fg = p.green, bg = bg(p.bg1) },
-    DiffChange   { fg = p.yellow, bg = bg(p.bg1) },
-    DiffDelete   { fg = p.red, bg = bg(p.bg1) },
-    DiffText     { fg = p.bg0, bg = p.yellow },
+    --
+    -- 差分の色は **背景だけ** で付ける。前景色を置くと変更行の構文ハイライトが
+    -- その色に潰れてしまい、diffを読む時に一番知りたい「何がどう変わったか」が
+    -- 読めなくなる。
+    --
+    -- 背景に bg1 を使わないのは、bg0 との差が小さすぎて地の背景と見分けが付かず、
+    -- しかも add / change / delete が互いに同じ色になってしまうため。かわりに
+    -- アクセント色の **色相を保ったまま** 彩度と明度だけ落として作る（`diff_line`）。
+    -- teal_night のように背景自体が色付きのパレットでは、アクセントを背景に混ぜる
+    -- 方式だと色相が背景側へ引っ張られて緑と赤が区別できなくなる。
+    --
+    -- 背景を `bg()` に通していないのは意図的。transparent では差分の色が
+    -- 全部消えてしまい、前景色を置かない以上そこに手掛かりが何も残らない。
+    DiffAdd      { bg = diff_line(p.green) },
+    DiffChange   { bg = diff_line(p.yellow) },
+    DiffText     { bg = diff_text(p.yellow) },
+    -- Neovim 0.11 で追加。`DiffText` が「この側の変わった文字」を指すのに対し
+    -- `DiffTextAdd` は「この側にしか無い文字」。既定は DiffText へのリンクなので、
+    -- 定義しないと追加と変更が同じ色のままになる
+    DiffTextAdd  { bg = diff_text(p.green) },
+    -- Vimのdiffには「削除された行」の色が無い。片側にしか無い行はどちらの窓でも
+    -- DiffAdd になり、DiffDelete は **穴埋め行** の色でしかない。埋め文字が
+    -- 見える程度の前景を持たせる
+    DiffDelete   { fg = p.red.saturation(35).lightness(p.bg0.l + 16), bg = diff_line(p.red) },
+
+    -- 差分の追加/変更/削除を表す標準グループ。`diff` ファイルタイプの
+    -- diffAdded / diffChanged / diffRemoved がここにリンクしているので、定義しないと
+    -- .patch や git のdiffを開いた時だけ Neovim 既定の原色が出てテーマから浮く
+    Added        { fg = p.green },
+    Changed      { fg = p.yellow },
+    Removed      { fg = p.red },
 
     -- ===================================================================
     -- Syntax Highlighting
