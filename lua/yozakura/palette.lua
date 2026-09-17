@@ -8,6 +8,7 @@ M.yozakura = {
     bg1 = "#234350", -- 暗い背景
     bg2 = "#2a4d5c", -- メイン背景
     bg3 = "#325866", -- 選択範囲
+    cursorline = "#515b61", -- カーソル行（bg0にsakuraを25%ブレンド）
 
     -- Foreground colors (サーモンピンク系)
     fg0 = "#f5e6e0", -- 主要テキスト (12:1)
