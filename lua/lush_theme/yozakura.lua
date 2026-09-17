@@ -28,6 +28,7 @@ local p = {
   bg1 = hex_to_hsl(palette_data.bg1),
   bg2 = hex_to_hsl(palette_data.bg2),
   bg3 = hex_to_hsl(palette_data.bg3),
+  cursorline = hex_to_hsl(palette_data.cursorline or palette_data.bg1),
 
   -- Foreground colors
   fg0 = hex_to_hsl(palette_data.fg0),
@@ -94,8 +95,8 @@ local theme = lush(function(injected_functions)
     FloatBorder  { fg = p.sakura_muted, bg = bg(p.bg1) },
     ColorColumn  { bg = bg(p.bg1) },
     Cursor       { fg = p.bg0, bg = p.sakura },
-    CursorLine   { bg = bg(p.bg1) },
-    CursorLineNr { fg = p.sakura, bg = bg(p.bg1) },
+    CursorLine   { bg = bg(p.cursorline) },
+    CursorLineNr { fg = p.sakura, bg = bg(p.cursorline) },
     LineNr       { fg = p.fg3 },
     SignColumn   { fg = p.fg3, bg = bg(p.bg0) },
     VertSplit    { fg = p.bg2 },
