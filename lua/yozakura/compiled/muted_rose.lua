@@ -179,7 +179,7 @@ function M.setup()
     ["SignColumn"] = { fg = "#7C7A85", bg = "#201F28" },
     ["VertSplit"] = { fg = "#383743" },
     ["EndOfBuffer"] = { fg = "#383743" },
-    ["Folded"] = { fg = "#B78A9A", bg = "#2C2B36" },
+    ["Folded"] = { fg = "#7C7A85", bg = "#2C2B36" },
     ["FoldColumn"] = { fg = "#7C7A85", bg = "#201F28" },
     ["StatusLine"] = { fg = "#C69FAD", bg = "#383743" },
     ["StatusLineNC"] = { fg = "#7C7A85", bg = "#2C2B36" },
