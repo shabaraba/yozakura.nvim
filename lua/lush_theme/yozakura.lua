@@ -101,7 +101,7 @@ local theme = lush(function(injected_functions)
     SignColumn   { fg = p.fg3, bg = bg(p.bg0) },
     VertSplit    { fg = p.bg2 },
     EndOfBuffer  { fg = p.bg2 },
-    Folded       { fg = p.fg2, bg = bg(p.bg1) },
+    Folded       { fg = p.fg3, bg = bg(p.bg1) },
     FoldColumn   { fg = p.fg3, bg = bg(p.bg0) },
 
     -- Statusline
